@@ -415,7 +415,7 @@ public class Utilidad {
 
 
     /* REGISTRA UN USUARIO EN FIREBASE AUTH Y SI EL REGISTRO ES CORRECTO LLAMA A 2 METODOS ADICIONALES 1 PARA REGISTRAR EL EMPLEADO EN LA BBDD Y EL OTRO PARA ASIGNARLE LOS CLAIMS PERSONALIZADOS*/
-    public static void RegUsuarioEnAtuh(Context context, String Nombre,String Apellidos, String Email,String Dni,String Pswd, String Categoria) {
+    public static void RegUsuarioEnAtuh(Context context, String Nombre,String Apellidos, String Email,String Dni,String Pswd, String Categoria, String horario) {
         //Obtenemos el nombre del local al que pertenece el dispositivo
         String nombrelocal = Utilidad.recupernombrelocal(context);
         if (nombrelocal.isEmpty()){
@@ -433,7 +433,7 @@ public class Utilidad {
                         String uid = user.getUid(); // Obtenemos el UID del nuevo usuario
 
                         //guardamos el empleado en la bbdd
-                        RegEmpleado(context, nombrelocal, uid, Nombre,Apellidos, Email, Dni, Pswd, Categoria);      // llamamos al metodo
+                        RegEmpleado(context, nombrelocal, uid, Nombre, Apellidos, Email, Dni, Pswd, Categoria, horario);      // llamamos al metodo
 
                         //le asignamos los claims respectivos tanto del local que pertenece como a su categoria
                         Utilidad.peticionrole(uid, nombrelocal, Categoria);                                         // llamamos al metodo
@@ -451,7 +451,7 @@ public class Utilidad {
     }
 
     /* ////////////////// añadimos el nuevo empleado a la base de datos ubicandolo en su respectivo local con su respectiva categoria y sus permisos/////////////// */
-    public static void RegEmpleado(Context context, String nombrelocal, String uid, String Nombre, String Apellidos, String  Email, String  Dni, String Pswd, String Categoria){
+    public static void RegEmpleado(Context context, String nombrelocal, String uid, String Nombre, String Apellidos, String  Email, String  Dni, String Pswd, String Categoria, String horario){
         // Crear un mapa con los datos del Empleado
         Map<String, String> Empleado = new HashMap<>();
         Empleado.put("nombre", Nombre);
@@ -460,7 +460,9 @@ public class Utilidad {
         Empleado.put("dni", Dni);
         Empleado.put("password", Pswd);
         Empleado.put("categoria", Categoria);
+        Empleado.put("horario", horario);
         Empleado.put("uid", uid);
+
 
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Empleados");
@@ -506,10 +508,11 @@ public class Utilidad {
                         String email = empleadoSnapshot.child("email").getValue(String.class);
                         String categoria = empleadoSnapshot.child("categoria").getValue(String.class);
                         String uid = empleadoSnapshot.child("uid").getValue(String.class);
+                        String horario = empleadoSnapshot.child("horario").getValue(String.class);
                         //no obtenemos el pswd porque no lo vamos a mostrar ni por pantalla ni lo usaremos para nada que no sea loguearse
 
-                        lista.add(new Persona(uid, dni, nombre, apellido, categoria, email));
-                        Log.d("Empleado", "⚠️ UID: "+ uid +", Nombre: " + nombre + ", Apellido: " + apellido + ", Categoría: " + categoria + ", DNI: " + dni);   // VERIFICACION DE DATOS, SE PUEDE BORRAR LUEGO ----------------------------------------------------------------
+                        lista.add(new Persona(uid, dni, nombre, apellido, categoria, email,horario));
+                        Log.d("Empleado", "⚠️ UID: "+ uid +", Nombre: " + nombre + ", Apellido: " + apellido + ", Categoría: " + categoria + ", DNI: " + dni + ", Horario: " + horario);   // VERIFICACION DE DATOS, SE PUEDE BORRAR LUEGO ----------------------------------------------------------------
                     }
                 }
                 adapter.notifyDataSetChanged();                                                     // Notificar al RecyclerView que los datos han cambiado y que debe volver a cargar

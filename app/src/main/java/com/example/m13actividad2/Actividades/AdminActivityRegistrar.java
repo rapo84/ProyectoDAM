@@ -29,7 +29,7 @@ import java.util.Map;
 public class AdminActivityRegistrar extends AppCompatActivity {
     private EditText nombre, apellidos, dni, email, pswd, categoria;
     private Button registrar;
-    Spinner spinnerCategoria;
+    Spinner spinnerCategoria, spinnerhorario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +47,24 @@ public class AdminActivityRegistrar extends AppCompatActivity {
         email=findViewById(R.id.emp_correo);
         pswd=findViewById(R.id.emp_contraseña);
         spinnerCategoria=findViewById(R.id.spinner_categoria);
+        spinnerhorario = findViewById(R.id.spinner_admin_horario);
         registrar=findViewById(R.id.bt_RegEmpleado);
 
 
 
 
 
-        // llenamos el spiner
+        // llenamos los spiner
         String[] opciones = {"Admin", "Empleado"};
+        String[] turnos = {"Mañana","Tarde","Partido"};
+
+        //llenamos el spiner de categoria
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner_personalizado, opciones);
         spinnerCategoria.setAdapter(adapter);
+
+        //llenamos el spiner de horarios
+        ArrayAdapter<String> adapterhorarios = new ArrayAdapter<>(this, R.layout.item_spinner_personalizado, turnos);
+        spinnerhorario.setAdapter(adapterhorarios);
 
         registrar.setOnClickListener(view -> {
             String Nombre = nombre.getText().toString().trim();
@@ -65,6 +73,7 @@ public class AdminActivityRegistrar extends AppCompatActivity {
             String Dni = dni.getText().toString().trim();
             String Pswd = pswd.getText().toString().trim();
             String Categoria = spinnerCategoria.getSelectedItem().toString();
+            String horario = spinnerhorario.getSelectedItem().toString();
 
             if (Nombre.isEmpty() || Apellidos.isEmpty() || Email.isEmpty() || Dni.isEmpty() || Pswd.isEmpty() || Categoria.isEmpty()){
                 Toast.makeText(this, "Todos los campos deben estar completos", Toast.LENGTH_SHORT).show();
@@ -85,7 +94,7 @@ public class AdminActivityRegistrar extends AppCompatActivity {
                 return;
             }
 
-            Utilidad.RegUsuarioEnAtuh(this, Nombre, Apellidos, Email, Dni, Pswd, Categoria);
+            Utilidad.RegUsuarioEnAtuh(this, Nombre, Apellidos, Email, Dni, Pswd, Categoria, horario);
 
             Intent intent = new Intent(AdminActivityRegistrar.this,OpcionesDeAdmin.class);
             startActivity(intent);

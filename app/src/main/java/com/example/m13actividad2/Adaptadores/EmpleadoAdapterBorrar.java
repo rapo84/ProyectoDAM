@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -57,6 +58,7 @@ public class EmpleadoAdapterBorrar extends RecyclerView.Adapter<EmpleadoAdapterB
         holder.tvCategoria.setText("CATEGORIA: " + empleado.getCategoria());
         holder.tvEmail.setText("Email: " + empleado.getCorreo());
         holder.tvDni.setText("DNI: " + empleado.getDni());
+        holder.horario.setText("HORARIO: " + empleado.getHorario());
 
 
         // Evento de clic en el botón de eliminar
@@ -75,8 +77,9 @@ public class EmpleadoAdapterBorrar extends RecyclerView.Adapter<EmpleadoAdapterB
 
     // Clase interna para el ViewHolder aqui asociamos cada elemento del xml del item con una variable que es la que usaremos luego en el onBindViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNombre, tvCategoria, tvEmail, tvDni;
+        TextView tvNombre, tvCategoria, tvEmail, tvDni, horario;
         Button btnEliminar;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +88,7 @@ public class EmpleadoAdapterBorrar extends RecyclerView.Adapter<EmpleadoAdapterB
             tvEmail = itemView.findViewById(R.id.tvEmail);
             tvDni = itemView.findViewById(R.id.tvDni);
             btnEliminar = itemView.findViewById(R.id.btn_Eliminar_en_lista);
+            horario = itemView.findViewById(R.id.tvhorario);
         }
     }
 

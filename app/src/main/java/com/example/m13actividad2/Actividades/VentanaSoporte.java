@@ -2,8 +2,10 @@ package com.example.m13actividad2.Actividades;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +27,7 @@ public class VentanaSoporte extends AppCompatActivity {
     private Button Addlocal, Addadmin, logout, enlazar;
     private EditText localname, adminName, adminLastname, dni, email, password;
     private String nombrelocal;
+    private Spinner spinnerHorarios;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,16 @@ public class VentanaSoporte extends AppCompatActivity {
         email= findViewById(R.id.et_soporte_adminEmail);
         password= findViewById(R.id.et_soporte_adminPassword);
 
+        spinnerHorarios = findViewById(R.id.spinner_soporte_horario);
+
         nombrelocal= localname.getText().toString().trim();
+
+
+        //llenmos el spinner
+        String[] turnos = {"Mañana","Tarde","Partido"};
+        //llenamos el spiner de horarios
+        ArrayAdapter<String> adapterhorarios = new ArrayAdapter<>(this, R.layout.item_spinner_personalizado, turnos);
+        spinnerHorarios.setAdapter(adapterhorarios);
 
         Addlocal.setOnClickListener(view -> {
             nombrelocal = localname.getText().toString().trim();
@@ -72,6 +84,7 @@ public class VentanaSoporte extends AppCompatActivity {
             String Email = email.getText().toString().trim();
             String Dni = dni.getText().toString().trim();
             String Pswd = password.getText().toString().trim();
+            String horario = spinnerHorarios.getSelectedItem().toString();
             String Categoria = "Admin";
             if (Nombre.isEmpty() || Apellidos.isEmpty() || Email.isEmpty() || Dni.isEmpty() || Pswd.isEmpty()){
                 Toast.makeText(this, "Todos los campos deben estar completos", Toast.LENGTH_SHORT).show();
@@ -92,7 +105,7 @@ public class VentanaSoporte extends AppCompatActivity {
                 return;
             }
 
-            Utilidad.RegUsuarioEnAtuh(this,Nombre, Apellidos, Email, Dni, Pswd, Categoria);
+            Utilidad.RegUsuarioEnAtuh(this,Nombre, Apellidos, Email, Dni, Pswd, Categoria, horario);
         });
 
         logout.setOnClickListener(view -> {

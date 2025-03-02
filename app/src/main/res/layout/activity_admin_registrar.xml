@@ -27,8 +27,6 @@
             android:textAlignment="center"
             android:textColor="@color/white" />
 
-<!--recordar poner mas adelante un atributo que guarde tambien el local al que pertence y que lo
-extariga del fichero personal del movil ya hay un metodo para eso-->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="200dp"
@@ -89,6 +87,12 @@ extariga del fichero personal del movil ya hay un metodo para eso-->
 
         <Spinner
             android:id="@+id/spinner_categoria"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/white" />
+
+        <Spinner
+            android:id="@+id/spinner_admin_horario"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/white" />

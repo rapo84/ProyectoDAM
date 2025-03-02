@@ -13,18 +13,21 @@ public class Persona {
     private String correo;
     private String password;
     private String categoria;
+    private String horario;
+
 
     public Persona(String UID) {
         this.uid = UID;
     }
 
-    public Persona(String uid,String dni, String nombre, String apellidos, String categoria, String correo) {
+    public Persona(String uid,String dni, String nombre, String apellidos, String categoria, String correo, String horario) {
         this.uid= uid;
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.categoria = categoria;
         this.correo = correo;
+        this.horario = horario;
     }
 
     public Persona(String UID, String dni, String nombre, String apellidos, int telefono, String correo, String password, String categoria) {
@@ -98,6 +101,14 @@ public class Persona {
     }
 
     public void setCategoria(String categoria) { this.categoria = categoria;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     @Override

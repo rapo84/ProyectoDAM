@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.m13actividad2.Modelos.Empleado;
 import com.example.m13actividad2.Modelos.Persona;
 import com.example.m13actividad2.R;
 
@@ -43,6 +45,7 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.ViewHo
         holder.tvCategoria.setText( "CATEGORIA: " + empleado.getCategoria());
         holder.tvEmail.setText("Email: " + empleado.getCorreo());
         holder.tvDni.setText("DNI: " + empleado.getDni());
+        holder.sphorario.setText("HORARIO: " + empleado.getHorario());
     }
 
     @Override
@@ -52,7 +55,7 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.ViewHo
 
     // Clase interna para el ViewHolder aqui asociamos cada elemento del xml del item con una variable que es la que usaremos luego en el onBindViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNombre, tvCategoria, tvEmail, tvDni;
+        TextView tvNombre, tvCategoria, tvEmail, tvDni, sphorario;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +63,7 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.ViewHo
             tvCategoria = itemView.findViewById(R.id.tvCategoria);
             tvEmail = itemView.findViewById(R.id.tvEmail);
             tvDni = itemView.findViewById(R.id.tvDni);
+            sphorario = itemView.findViewById(R.id.tvHorarios);
         }
     }
 }

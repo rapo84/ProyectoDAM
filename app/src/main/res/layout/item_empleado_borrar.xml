@@ -48,6 +48,13 @@
                 android:layout_height="wrap_content"
                 android:hint="DNI"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvhorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="HORARIO"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <!-- Botón de eliminar -->
