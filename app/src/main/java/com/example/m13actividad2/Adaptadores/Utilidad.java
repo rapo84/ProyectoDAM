@@ -149,6 +149,8 @@ public class Utilidad {
         });
     }
 
+    //comentario git hub
+
     /*
     ////////VERIFICAR CLAIMS DE USUARIOS DEL AUTH  ESTE SE USA SOLO PARA CAMBIAR DE ACTIVIDAD SEGUN SU CATEGORIA////////////
             PRIMERO USAMOS ESTE METODO QUE LLAMA LUEGO A ExtractUserRole  */
