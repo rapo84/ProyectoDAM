@@ -17,11 +17,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.m13actividad2.Adaptadores.Utilidad;
 import com.example.m13actividad2.R;
 import com.example.m13actividad2.firebaseServerSdk.LocalesCallback;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class VentanaSoporte extends AppCompatActivity {
     private Button Addlocal, Addadmin, logout, enlazar;
@@ -68,7 +67,12 @@ public class VentanaSoporte extends AppCompatActivity {
                 @Override
                 public void onCallback(ArrayList<String> listalocalesexistentes) {
                     // 📌 Ahora `VerificarExistlocal()` recibe la lista llena porque espera a que la consulta a firebase se complete antes de trabjar con una lista vacia
-                    Utilidad.VerificarExistlocal(Addlocal.getContext(), nombrelocal, listalocalesexistentes);
+                    if(!nombrelocal.trim().isEmpty()){
+                        Utilidad.VerificarExistlocal(Addlocal.getContext(), nombrelocal, listalocalesexistentes);
+                    }else{
+                        Toast.makeText(VentanaSoporte.this,"El nombre del local no puede estar vacio",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         });

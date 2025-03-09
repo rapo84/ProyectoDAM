@@ -82,7 +82,6 @@ public class Ventana_Inicial extends AppCompatActivity {
 
                         Utilidad.checkUserRoleparaSeccion(this);
 
-                        Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                     } else {
                         // Fallo en la autenticación
                         Toast.makeText(this, "Error al iniciar sesión: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

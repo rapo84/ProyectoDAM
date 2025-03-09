@@ -80,10 +80,16 @@ public class Utilidad {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
     public static void guardarNombrenegocioLocalmente(Context context, String localname) {
-        SharedPreferences prefs = context.getSharedPreferences("UserData", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("NombreLocal", localname);
-        editor.apply();
+        if (!localname.trim().isEmpty()) {
+            SharedPreferences prefs = context.getSharedPreferences("UserData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("NombreLocal", localname);
+            editor.apply();
+            String confirm = recupernombrelocal(context);
+            Log.i("Local enlazado:", confirm);
+        }else{
+            Toast.makeText(context,"El nombre del local no puede estar vacio",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static String recupernombrelocal(Context context) {
