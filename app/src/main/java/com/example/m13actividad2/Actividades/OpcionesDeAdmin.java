@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class OpcionesDeAdmin extends AppCompatActivity {
-    private Button Registrar, Eliminar, Listar, Salir, ModoEmpleado;
+    private Button Registrar, Eliminar, Listar, Salir, ModoEmpleado, GestionInventarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class OpcionesDeAdmin extends AppCompatActivity {
         Listar=findViewById(R.id.bt_admin_list);
         Salir= findViewById(R.id.bt_admin_salir);
         ModoEmpleado= findViewById(R.id.bt_admin_cambiar_modo_empleado);
+        GestionInventarios= findViewById(R.id.bt_admin_inventarios);
 
         Registrar.setOnClickListener(view -> {
             Intent intent = new Intent(OpcionesDeAdmin.this, AdminActivityRegistrar.class);
@@ -60,14 +61,20 @@ public class OpcionesDeAdmin extends AppCompatActivity {
             finish();
         });
 
-        Salir.setOnClickListener(view -> {
-            Utilidad.cerrarSesionYRedirigir(this, Ventana_Inicial.class);
+        GestionInventarios.setOnClickListener(view -> {
+            Intent intent = new Intent(OpcionesDeAdmin.this, GestionInventarios.class);
+            startActivity(intent);
+            finish();
         });
 
         ModoEmpleado.setOnClickListener(view -> {
             Intent intent = new Intent(OpcionesDeAdmin.this, EmpleadoActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        Salir.setOnClickListener(view -> {
+            Utilidad.cerrarSesionYRedirigir(this, Ventana_Inicial.class);
         });
 
     }

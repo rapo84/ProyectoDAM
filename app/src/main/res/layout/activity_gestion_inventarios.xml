@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".Actividades.EmpleadoActivity">
+    tools:context=".Actividades.GestionInventarios">
 
     <Button
-        android:id="@+id/bt_empleado_logout"
+        android:id="@+id/bt_inventario_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="49dp"

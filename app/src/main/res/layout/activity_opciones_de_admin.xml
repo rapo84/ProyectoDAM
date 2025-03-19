@@ -22,16 +22,16 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:textSize="20dp"
-            android:text="PANEL DE CONTROL DEL ADMINISTRADOR"
+            android:textSize="18dp"
+            android:text="PANEL DE ADMINISTRADOR"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="199dp"
+            android:layout_height="157dp"
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/admopc" />
 
@@ -98,10 +98,18 @@
             android:text="Cambiar a modo empleado" />
 
         <Button
+            android:id="@+id/bt_admin_inventarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="#F6655E"
+            android:text="Gestionar Inventarios" />
+
+        <Button
             android:id="@+id/bt_admin_salir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#F6655E"
+            android:backgroundTint="#E7312A"
             android:text="Cerrar Sesion" />
     </LinearLayout>
 

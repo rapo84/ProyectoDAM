@@ -70,8 +70,10 @@
         android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
         app:layout_constraintTop_toBottomOf="@+id/Admin_control_panel"
+        app:layout_constraintVertical_bias="0.131"
         app:srcCompat="@drawable/admopc" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -178,5 +180,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
+
+    <Button
+        android:id="@+id/bt_admin_inventarios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F6655E"
+        android:text="Gestionar Inventarios"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="@+id/guideline19"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.769" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

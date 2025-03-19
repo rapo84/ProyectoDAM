@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 ESTA CLASE ES PARA PODER CONFIGURAR LA CONEXION DEL RETROFIT CON EL SERVIDOR NODE
  */
 public class RetrofitClient {
-    private static final String BASE_URL = "http://192.168.56.1:3000";
+    private static final String BASE_URL = "https://europe-west1-easyorder-grupo07.cloudfunctions.net/";
     private static Retrofit retrofit;
 
     public static Retrofit getInstance() {
