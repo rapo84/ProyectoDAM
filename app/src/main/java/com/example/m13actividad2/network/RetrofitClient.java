@@ -1,4 +1,6 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.network;
+
+import com.example.m13actividad2.interfaces.ApiService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,4 +1,4 @@
-package com.example.m13actividad2.Adaptadores;
+package com.example.m13actividad2.utils;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -12,16 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m13actividad2.Actividades.EmpleadoActivity;
 import com.example.m13actividad2.Actividades.OpcionesDeAdmin;
-import com.example.m13actividad2.Actividades.VentanaSoporte;
 import com.example.m13actividad2.Modelos.Persona;
-import com.example.m13actividad2.firebaseServerSdk.ApiResponse;
-import com.example.m13actividad2.firebaseServerSdk.ApiService;
-import com.example.m13actividad2.firebaseServerSdk.ClaimsResponse;
-import com.example.m13actividad2.firebaseServerSdk.LocalesCallback;
-import com.example.m13actividad2.firebaseServerSdk.RetrofitClient;
-import com.example.m13actividad2.firebaseServerSdk.RoleCheckCallback;
-import com.example.m13actividad2.firebaseServerSdk.RoleRequest;
-import com.example.m13actividad2.firebaseServerSdk.TokenRequest;
+import com.example.m13actividad2.network.ApiResponse;
+import com.example.m13actividad2.interfaces.ApiService;
+import com.example.m13actividad2.network.ClaimsResponse;
+import com.example.m13actividad2.interfaces.LocalesCallback;
+import com.example.m13actividad2.network.RetrofitClient;
+import com.example.m13actividad2.interfaces.RoleCheckCallback;
+import com.example.m13actividad2.network.RoleRequest;
+import com.example.m13actividad2.network.TokenRequest;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

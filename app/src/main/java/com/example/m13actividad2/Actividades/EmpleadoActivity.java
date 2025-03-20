@@ -9,7 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.m13actividad2.Adaptadores.Utilidad;
+import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
 
 public class EmpleadoActivity extends AppCompatActivity {

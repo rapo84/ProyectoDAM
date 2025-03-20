@@ -2,9 +2,7 @@ package com.example.m13actividad2.Actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.m13actividad2.Adaptadores.Utilidad;
+import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class OpcionesDeAdmin extends AppCompatActivity {
     private Button Registrar, Eliminar, Listar, Salir, ModoEmpleado, GestionInventarios;
@@ -64,7 +59,6 @@ public class OpcionesDeAdmin extends AppCompatActivity {
         GestionInventarios.setOnClickListener(view -> {
             Intent intent = new Intent(OpcionesDeAdmin.this, GestionInventarios.class);
             startActivity(intent);
-            finish();
         });
 
         ModoEmpleado.setOnClickListener(view -> {

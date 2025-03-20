@@ -1,4 +1,4 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.network;
 /*
 CLASE PARA PODER MANEJAR LA PETICION DE ROLREQUEST YA QUE PASAMOS LA INFO COMO UN OBJETO  (REVISAR LO DE PASAR LA INFO COMO OBJETO)
  */

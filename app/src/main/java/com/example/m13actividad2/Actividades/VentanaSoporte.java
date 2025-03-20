@@ -1,7 +1,6 @@
 package com.example.m13actividad2.Actividades;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.m13actividad2.Adaptadores.Utilidad;
+import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
-import com.example.m13actividad2.firebaseServerSdk.LocalesCallback;
+import com.example.m13actividad2.interfaces.LocalesCallback;
 
 
 import java.util.ArrayList;

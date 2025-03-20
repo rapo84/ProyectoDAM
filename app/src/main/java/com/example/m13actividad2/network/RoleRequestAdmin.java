@@ -1,4 +1,4 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.network;
 
 /*
 CLASE PARA PODER MANEJAR LA PETICION DE ROLREQUEST PERO SOLO PARA EL SUPER USER (ESTO SE UNA SOLO UNA VEZ)

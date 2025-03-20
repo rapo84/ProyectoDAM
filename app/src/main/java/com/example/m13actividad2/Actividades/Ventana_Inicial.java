@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.m13actividad2.Adaptadores.Utilidad;
+import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
 import com.google.firebase.auth.FirebaseAuth;
 

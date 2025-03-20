@@ -1,4 +1,4 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.network;
 
 /*
 CLASE CREADA PARA PODER HACER LA LLAMADA (CON LA INTERFACE apiservice) CON ESTA

@@ -8,19 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.m13actividad2.Modelos.Persona;
 import com.example.m13actividad2.R;
-import com.example.m13actividad2.firebaseServerSdk.ApiService;
-import com.example.m13actividad2.firebaseServerSdk.RetrofitClient;
+import com.example.m13actividad2.interfaces.ApiService;
+import com.example.m13actividad2.network.RetrofitClient;
+import com.example.m13actividad2.utils.Utilidad;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 

@@ -9,12 +9,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.m13actividad2.Adaptadores.Utilidad;
+import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
 
 public class GestionInventarios extends AppCompatActivity {
 
-    private Button Salir;
+    private Button AgregarProducto, ListarProductos, ModificarProductos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,10 @@ public class GestionInventarios extends AppCompatActivity {
             return insets;
         });
 
-        Salir= findViewById(R.id.bt_inventario_logout);
+        AgregarProducto = findViewById(R.id.bt_inventario_agregar);
+        ListarProductos = findViewById(R.id.bt_inventario_listar);
+        ModificarProductos = findViewById(R.id.bt_inventario_modificar);
 
-        Salir.setOnClickListener(view -> {
-            Utilidad.cerrarSesionYRedirigir(this, Ventana_Inicial.class);
-        });
+
     }
 }

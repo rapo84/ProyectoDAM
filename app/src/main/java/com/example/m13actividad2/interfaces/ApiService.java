@@ -1,4 +1,10 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.interfaces;
+
+import com.example.m13actividad2.network.ApiResponse;
+import com.example.m13actividad2.network.ClaimsResponse;
+import com.example.m13actividad2.network.RoleRequest;
+import com.example.m13actividad2.network.RoleRequestAdmin;
+import com.example.m13actividad2.network.TokenRequest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

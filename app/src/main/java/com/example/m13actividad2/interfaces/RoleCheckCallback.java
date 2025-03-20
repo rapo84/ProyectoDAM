@@ -1,4 +1,4 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.interfaces;
 
 public interface RoleCheckCallback {
     void onRoleChecked(boolean aceptado);

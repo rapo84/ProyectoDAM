@@ -1,4 +1,4 @@
-package com.example.m13actividad2.firebaseServerSdk;
+package com.example.m13actividad2.network;
 /*
 CLASE PARA MANEJAR LA RESPUESTA DEL SERVIDOR NODE
  */
