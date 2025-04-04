@@ -14,7 +14,7 @@ import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
 
 public class OpcionesDeAdmin extends AppCompatActivity {
-    private Button Registrar, Eliminar, Listar, Salir, ModoEmpleado, GestionInventarios;
+    private Button Salir, ModoEmpleado, GestionInventarios, GestionEstablecimiento, GestionEmpleados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,33 +27,27 @@ public class OpcionesDeAdmin extends AppCompatActivity {
             return insets;
         });
 
-        Registrar=findViewById(R.id.bt_admin_register);
-        Eliminar=findViewById(R.id.bt_admin_delete);
-        Listar=findViewById(R.id.bt_admin_list);
+
+
         Salir= findViewById(R.id.bt_admin_salir);
         ModoEmpleado= findViewById(R.id.bt_admin_cambiar_modo_empleado);
-        GestionInventarios= findViewById(R.id.bt_admin_inventarios);
+        GestionInventarios= findViewById(R.id.bt_admin_GestionInventarios);
+        GestionEstablecimiento=findViewById(R.id.bt_admin_gestionEstablecimiento);
+        GestionEmpleados=findViewById(R.id.bt_admin_gestionEmpleados);
 
-        Registrar.setOnClickListener(view -> {
-            Intent intent = new Intent(OpcionesDeAdmin.this, AdminActivityRegistrar.class);
+
+        GestionEstablecimiento.setOnClickListener(view -> {
+            Intent intent = new Intent(OpcionesDeAdmin.this, GestionEstablecimiento.class);
             startActivity(intent);
-            finish();
+
 
         });
 
 
-        Eliminar.setOnClickListener(view -> {
-            Intent intent = new Intent(OpcionesDeAdmin.this, AdminActivityEliminar.class);
+        GestionEmpleados.setOnClickListener(view -> {
+            Intent intent = new Intent(OpcionesDeAdmin.this, GestionEmpleados.class);
             startActivity(intent);
-            finish();
 
-        });
-
-
-        Listar.setOnClickListener(view -> {
-            Intent intent = new Intent(OpcionesDeAdmin.this, AdminActivityListar.class);
-            startActivity(intent);
-            finish();
         });
 
         GestionInventarios.setOnClickListener(view -> {

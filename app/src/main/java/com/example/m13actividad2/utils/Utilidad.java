@@ -91,6 +91,20 @@ public class Utilidad {
         }
     }
 
+    public static void guardarnumMEsas(Context context, int numMesas) {
+        if (numMesas > 0) {
+            SharedPreferences prefs = context.getSharedPreferences("UserData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("NumMesas", numMesas);
+            editor.apply();
+            int num = recupernumMesas(context);
+            String confirm = String.valueOf(num);
+            Log.i("# de mesas guaradado:", "num de mesas= " + confirm);
+        }else{
+            Toast.makeText(context,"el valor debe ser mayor a 0",Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public static String recupernombrelocal(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
         String nombreLocal = prefs.getString("NombreLocal", null); // Devuelve null si no existe la clave
@@ -99,6 +113,17 @@ public class Utilidad {
             return ""; // Devuelve una cadena vacía en lugar de null para evitar posibles errores  MANEJAR CON UN TOAST DONDE LO LLAMEMOS
         } else {
             return nombreLocal;
+        }
+    }
+
+    public static int recupernumMesas(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        int NumMesas = prefs.getInt("NumMesas", 0); // Devuelve null si no existe la clave
+
+        if (NumMesas == 0) {
+            return 0; // Devuelve un 0 en lugar de null para evitar posibles errores  MANEJAR CON UN TOAST DONDE LO LLAMEMOS
+        } else {
+            return NumMesas;
         }
     }
 

@@ -36,79 +36,48 @@
             app:srcCompat="@drawable/admopc" />
 
         <Button
-            android:id="@+id/bt_admin_register"
-            android:layout_width="match_parent"
+            android:id="@+id/bt_admin_gestionEmpleados"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:backgroundTint="#F6655E"
-            android:text="Registrar Empleado" />
-
-        <TextView
-            android:id="@+id/msg_register"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:text="Registra un nuevo empleado en la base de datos de tu establecimiento"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:text="Gestionar Empleados" />
 
         <Button
-            android:id="@+id/bt_admin_delete"
-            android:layout_width="match_parent"
+            android:id="@+id/bt_admin_gestionEstablecimiento"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#F6655E"
-            android:text="Eliminar empleado" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:text="Elimina un empleado de la base de datos de tu establecimiento"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:text="Gestionar Establecimiento" />
 
         <Button
-            android:id="@+id/bt_admin_list"
-            android:layout_width="match_parent"
+            android:id="@+id/bt_admin_GestionInventarios"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="80dp"
             android:backgroundTint="#F6655E"
-            android:text="Listar empleados" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:text="Lista a todos los empleados de la base de datos de tu establecimiento"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:text="Gestionar Inventarios" />
 
         <Button
             android:id="@+id/bt_admin_cambiar_modo_empleado"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#F6655E"
             android:text="Cambiar a modo empleado" />
 
         <Button
-            android:id="@+id/bt_admin_inventarios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="#F6655E"
-            android:text="Gestionar Inventarios" />
-
-        <Button
             android:id="@+id/bt_admin_salir"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#E7312A"
             android:text="Cerrar Sesion" />
     </LinearLayout>
