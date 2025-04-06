@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.m13actividad2.Actividades.Producto;
+import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.R;
 
 import java.util.List;
