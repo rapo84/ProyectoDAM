@@ -2,17 +2,28 @@ package com.example.m13actividad2.Modelos;
 
 public class Producto {
 
+    private String codigo;
     private String nombre;
     private double precio;
     private String descripcion;
     private String categoria;
     private int cantidad;
 
+
     public Producto(){
 
     }
 
-    public Producto(String nombre, double precio, String descripcion, String categoria, int cantidad) {
+    public Producto(String codigo, String nombre, double precio, String categoria, int cantidad) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
+        this.cantidad = cantidad;
+    }
+
+    public Producto(String codigo, String nombre, double precio, String descripcion, String categoria, int cantidad) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
@@ -60,4 +71,11 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }
