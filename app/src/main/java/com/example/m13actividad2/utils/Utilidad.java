@@ -3,7 +3,9 @@ package com.example.m13actividad2.utils;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.m13actividad2.Actividades.EmpleadoActivity;
 import com.example.m13actividad2.Actividades.OpcionesDeAdmin;
 import com.example.m13actividad2.Modelos.Persona;
+import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.network.ApiResponse;
 import com.example.m13actividad2.interfaces.ApiService;
 import com.example.m13actividad2.network.ClaimsResponse;
@@ -36,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -576,7 +580,7 @@ public class Utilidad {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 obtener lista de locales en BBDD y verificar qeu no se repita esto porque si agregamos
-                    una clave a la BBDD con un mismo esta reiniciara todos los datos de ese local
+                    una clave a la BBDD con un mismo valor esta reiniciara todos los datos de ese local
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -650,6 +654,144 @@ public class Utilidad {
                         Toast.makeText(context, "No Se ha podido agregar el nuevo local a la BBDD",Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+
+    /*
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                   METODOS PARA TRABAJAR CON LOS PRODUCTOS (TENER EN CUENTA QUE CUANDO INGRESAS UNA CLAVE VALOR, Y YA LA CLAVE EXISTE
+                   SE SOBREEESCRIBEN LOS VALORES Y SE BORRA LA INORMACION ANTERIOR
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    */
+
+
+    public static void leerProductos(Context context, List<Producto> lista, RecyclerView.Adapter adapter, String categoria) {
+        String nombrelocal= Utilidad.recupernombrelocal(context);           //Obtenemos el nombre del local a donde pertenece el dispositivo
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Productos").child(categoria);  // obtenemos la referencia a la bbdd
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                lista.clear();                                                                      // Limpiamos la lista antes de agregar nuevos datos
+                for (DataSnapshot categoriaSnapshot : dataSnapshot.getChildren()) {                 // Iterar sobre cada producto dentro de la categoria
+                        String codigo = categoriaSnapshot.child("codigo").getValue(String.class);
+                        String nombre = categoriaSnapshot.child("nombre").getValue(String.class);
+                        Double precio = categoriaSnapshot.child("precio").getValue(Double.class);
+                        Integer cantidad = categoriaSnapshot.child("cantidad").getValue(Integer.class);
+                        String categoria = categoriaSnapshot.child("categoria").getValue(String.class);
+                        String descripcion = categoriaSnapshot.child("descripcion").getValue(String.class);
+
+                    if (codigo == null || nombre == null || precio == null || categoria == null) {
+                        Log.w("ProductoInvalido", "❗ Producto ignorado por datos incompletos.");
+                        continue;
+                    }
+
+                    if (cantidad == null) {
+                        cantidad = 0;
+                    }
+
+                        lista.add(new Producto(codigo, nombre, precio, descripcion, categoria, cantidad));
+                        Log.w("Producto", "⚠️ Codigo: "+ codigo +", Nombre: " + nombre + ", precio: " + precio + ", Categoría: " + categoria + ", Cantidad: " + cantidad);   // VERIFICACION DE DATOS, SE PUEDE BORRAR LUEGO ----------------------------------------------------------------
+
+                }
+                adapter.notifyDataSetChanged();                                                     // Notificar al RecyclerView que los datos han cambiado y que debe volver a cargar
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("FirebaseError", "❌ Error al leer datos", databaseError.toException());     // NO borrar, ofrece informacion
+            }
+        });
+    }
+
+    public static void modificarProducto (Context context, String categoria, String atributo, Object nuevoValor, String codigo){
+        String nombrelocal= Utilidad.recupernombrelocal(context);           //Obtenemos el nombre del local a donde pertenece el dispositivo
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Productos").child(categoria).child(codigo);
+        Map<String, Object > datoActualizado = new HashMap<>();
+        datoActualizado.put(atributo,nuevoValor);
+
+        databaseReference.updateChildren(datoActualizado)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(context,"Informacion modificada correctamente", Toast.LENGTH_SHORT).show();
+                        Log.d("Firebase", "✅ se ha Modificado el producto correctamente");                // no borrar ofrece confirmacion por consola
+
+                    } else {
+                        Toast.makeText(context,"no se ha podido Modificar la informacion", Toast.LENGTH_SHORT).show();
+                        Log.e("Firebase", "❌ Error al modificar la informacion del producto.", task.getException());    // no borrar ofrece, informacion por consola
+                    }
+                });
+
+    }
+
+    public static void modificarCodigo (Context context, Producto producto, String newCodigo, String oldcode){
+        String nombrelocal = Utilidad.recupernombrelocal(context);
+
+        Map<String,Object> productofinal=new HashMap<>();
+        productofinal.put("cantidad",producto.getCantidad());
+        productofinal.put("categoria",producto.getCategoria());
+        productofinal.put("codigo",newCodigo);
+        productofinal.put("descripcion",producto.getDescripcion());
+        productofinal.put("nombre",producto.getNombre());
+        productofinal.put("precio",producto.getPrecio());
+
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales")
+                .child(nombrelocal).child("Productos").child(producto.getCategoria());
+
+        databaseReference.child(newCodigo).setValue(productofinal).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                databaseReference.child(oldcode).removeValue().addOnCompleteListener(deleteTask -> {
+                    if (deleteTask.isSuccessful()) {
+                        producto.setCodigo(newCodigo);// ojo estamos aqui
+                        ((Activity) context).recreate();
+                        Toast.makeText(context, "El código se ha modificado correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Nuevo código guardado, pero no se pudo eliminar el anterior", Toast.LENGTH_LONG).show();
+                    }
+                });
+            } else {
+                Toast.makeText(context, "El código no ha podido modificarse", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public static void modificarCategoria (Context context, Producto producto, String newcategoria, String oldcategoria){
+        String nombrelocal = Utilidad.recupernombrelocal(context);
+
+        Map<String,Object> productofinal=new HashMap<>();
+        productofinal.put("cantidad",producto.getCantidad());
+        productofinal.put("categoria",newcategoria);
+        productofinal.put("codigo",producto.getCodigo());
+        productofinal.put("descripcion",producto.getDescripcion());
+        productofinal.put("nombre",producto.getNombre());
+        productofinal.put("precio",producto.getPrecio());
+
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales")
+                .child(nombrelocal).child("Productos");
+
+        databaseReference.child(newcategoria).child(producto.getCodigo()).setValue(productofinal).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                databaseReference.child(oldcategoria).child(producto.getCodigo()).removeValue().addOnCompleteListener(deleteTask -> {
+                    if (deleteTask.isSuccessful()) {
+                        producto.setCategoria(newcategoria);// ojo estamos aqui
+                        ((Activity) context).recreate();
+                        Toast.makeText(context, "la categoria se ha modificado correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Nueva categoria establecida, pero algo fallo en el proceso", Toast.LENGTH_LONG).show();
+                    }
+                });
+            } else {
+                Toast.makeText(context, "La categoria no ha podido modificarse", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
