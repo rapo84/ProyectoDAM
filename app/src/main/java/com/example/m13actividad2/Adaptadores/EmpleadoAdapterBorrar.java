@@ -117,7 +117,7 @@ public class EmpleadoAdapterBorrar extends RecyclerView.Adapter<EmpleadoAdapterB
 
     // Método para eliminar empleado de Firebase y llama a metodo para eliminar el empleado tambien del AUTH  modifiacar cuando agreemos el local
     private void eliminarEmpleado(Persona empleado, int position) {
-        String nombrelocal= Utilidad.recupernombrelocal(context);
+        String nombrelocal= Utilidad.recuperDatoslocal(context, "NombreLocal");
         //Log.e("VER INFO PERSONA", "NOMBRE: " + empleado.getNombre() + ", UID: " + empleado.getUid());    ESTE LOG ES SOLO PARA VER SI SE ESTA LEYENDO EL EMPLEADO CORRECTAMENTE
 
         // priemro obtenemos la referencia en la bbdd del empleado que queremos eliminar

@@ -78,7 +78,7 @@ public class VentanaSoporte extends AppCompatActivity {
 
         enlazar.setOnClickListener(view -> {
             nombrelocal= localname.getText().toString().trim();
-            Utilidad.guardarNombrenegocioLocalmente(this, nombrelocal);
+            Utilidad.guardarDatoLocalmente(this, nombrelocal, "NombreLocal");
         });
 
         Addadmin.setOnClickListener(view -> {

@@ -12,13 +12,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.m13actividad2.ConextionsPrint.ImpresionBt;
 import com.example.m13actividad2.R;
+import com.example.m13actividad2.interfaces.SelecconImpresoraCallBack;
 import com.example.m13actividad2.utils.Utilidad;
 
 public class GestionEstablecimiento extends AppCompatActivity {
     private ImageButton GuardarNumMesas, EnlazarPrint;
     private EditText EtnumMesas;
     private int NumeroDeMesas;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,10 @@ public class GestionEstablecimiento extends AppCompatActivity {
             return insets;
         });
 
+        EnlazarPrint = findViewById(R.id.imgbt_opc_establecimiento_setImpresora);
         GuardarNumMesas = findViewById(R.id.bt_opc_establecimiento_guardarnumMesas);
         EtnumMesas = findViewById(R.id.et_opc_establecimiento_numero_mesas);
+
 
         GuardarNumMesas.setOnClickListener(view -> {
             NumeroDeMesas = 0;
@@ -52,6 +57,17 @@ public class GestionEstablecimiento extends AppCompatActivity {
 
 
         });
+
+        EnlazarPrint.setOnClickListener(view -> {
+            ImpresionBt.SeleccionarImpresora(this, new SelecconImpresoraCallBack() {
+                @Override
+                public void onImpresoraSeleccionada(String printerName) {
+                    Utilidad.guardarDatoLocalmente(GestionEstablecimiento.this,printerName,"Impresora");
+                }
+            });
+
+        });
+
 
     }
 }

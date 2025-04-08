@@ -75,16 +75,17 @@ public class Utilidad {
     /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         GESTIONAR ARCHIVOS EN LOCAL PARA LA APP
+        variables dentro del archivo: "NombreLocal", "NumMesas", "Impresora"
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-    public static void guardarNombrenegocioLocalmente(Context context, String localname) {
-        if (!localname.trim().isEmpty()) {
+    public static void guardarDatoLocalmente(Context context, String DatoGurdar, String claveObjeto) {
+        if (!DatoGurdar.trim().isEmpty()) {
             SharedPreferences prefs = context.getSharedPreferences("UserData", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("NombreLocal", localname);
+            editor.putString(claveObjeto, DatoGurdar);
             editor.apply();
-            String confirm = recupernombrelocal(context);
+            String confirm = recuperDatoslocal(context, claveObjeto);
             Log.i("Local enlazado:", confirm);
         }else{
             Toast.makeText(context,"El nombre del local no puede estar vacio",Toast.LENGTH_SHORT).show();
@@ -105,14 +106,14 @@ public class Utilidad {
         }
     }
 
-    public static String recupernombrelocal(Context context) {
+    public static String recuperDatoslocal(Context context, String claveObjeto) {
         SharedPreferences prefs = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        String nombreLocal = prefs.getString("NombreLocal", null); // Devuelve null si no existe la clave
+        String DatoObtenido = prefs.getString(claveObjeto, null); // Devuelve null si no existe la clave
 
-        if (nombreLocal == null) {
+        if (DatoObtenido == null) {
             return ""; // Devuelve una cadena vacía en lugar de null para evitar posibles errores  MANEJAR CON UN TOAST DONDE LO LLAMEMOS
         } else {
-            return nombreLocal;
+            return DatoObtenido;
         }
     }
 
@@ -186,7 +187,7 @@ public class Utilidad {
             PRIMERO USAMOS ESTE METODO QUE LLAMA LUEGO A ExtractUserRole  */
     public static void checkUserRoleparaSeccion(Context context) {
 
-        String nombrelocal = recupernombrelocal(context);                                      // obtenemos el nombre del local guardado localmente en el dispositivo
+        String nombrelocal = recuperDatoslocal(context, "NombreLocal");                                      // obtenemos el nombre del local guardado localmente en el dispositivo
         Log.e("chequeo login", "⚠️ el nombre del local es: "+ nombrelocal);             // LOG PARA CONFIRMAR EL NOMBRE DEL LOCAL QUE SE ESTE USANDO (SE PUEDE BORRAR LUEGO)--------------------------------------------------
 
         /*  Llama al método ExtractUserRole para extraer los claims del usuario actualmente logueado y poder usarlos
@@ -449,7 +450,7 @@ public class Utilidad {
     /* REGISTRA UN USUARIO EN FIREBASE AUTH Y SI EL REGISTRO ES CORRECTO LLAMA A 2 METODOS ADICIONALES 1 PARA REGISTRAR EL EMPLEADO EN LA BBDD Y EL OTRO PARA ASIGNARLE LOS CLAIMS PERSONALIZADOS*/
     public static void RegUsuarioEnAtuh(Context context, String Nombre,String Apellidos, String Email,String Dni,String Pswd, String Categoria, String horario) {
         //Obtenemos el nombre del local al que pertenece el dispositivo
-        String nombrelocal = Utilidad.recupernombrelocal(context);
+        String nombrelocal = Utilidad.recuperDatoslocal(context,"NombreLocal");
         if (nombrelocal.isEmpty()){
             Toast.makeText(context, "No existe un nombre de local almacenado. Por favor, ingrese uno desde las opciones de soporte técnico.", Toast.LENGTH_SHORT).show();
             return;
@@ -524,7 +525,7 @@ public class Utilidad {
 
     /* /////////// Metodo para leer los trabajadores de la bbdd para rellenar un Recyclerview y actualizando el contendido del adaptador que se este usando par el recyclerview/////////////   */
     public static void leerTrabajadores(Context context, List<Persona> lista, RecyclerView.Adapter adapter) {
-        String nombrelocal= Utilidad.recupernombrelocal(context);           //Obtenemos el nombre del local a donde pertenece el dispositivo
+        String nombrelocal= Utilidad.recuperDatoslocal(context, "NombreLocal");           //Obtenemos el nombre del local a donde pertenece el dispositivo
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Empleados");  // obtenemos la referencia a la bbdd
 
