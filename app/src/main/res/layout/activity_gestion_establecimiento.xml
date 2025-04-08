@@ -124,27 +124,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_mesas"
         app:srcCompat="@android:drawable/ic_menu_save" />
 
-    <EditText
-        android:id="@+id/et_opc_establecimiento_textoImprimir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgbt_opc_establecimiento_setImpresora" />
-
-    <Button
-        android:id="@+id/bt_opc_establecimiento_Imprimir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toEndOf="@+id/et_opc_establecimiento_textoImprimir"
-        app:layout_constraintTop_toBottomOf="@+id/imgbt_opc_establecimiento_setImpresora" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
