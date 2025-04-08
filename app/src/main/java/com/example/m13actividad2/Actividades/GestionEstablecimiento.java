@@ -36,8 +36,14 @@ public class GestionEstablecimiento extends AppCompatActivity {
 
         GuardarNumMesas.setOnClickListener(view -> {
             NumeroDeMesas = 0;
+            String entrada = EtnumMesas.getText().toString().trim();
+
+            if (entrada.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
             try {
-                NumeroDeMesas = Integer.parseInt(EtnumMesas.getText().toString().trim());
+                NumeroDeMesas = Integer.parseInt(entrada);
             } catch (NumberFormatException e) {
                 // Manejar el error: puedes mostrar un mensaje o asignar un valor predeterminado
                 Toast.makeText(this, "Ingrese un número válido", Toast.LENGTH_SHORT).show();

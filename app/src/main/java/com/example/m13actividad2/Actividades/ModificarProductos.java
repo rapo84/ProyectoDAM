@@ -93,34 +93,72 @@ public class ModificarProductos extends AppCompatActivity {
 
         saveCodigo.setOnClickListener(view -> {
             cod= codigo.getText().toString();
+            if (cod.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             Utilidad.modificarCodigo(this,productoRecibido,cod,productoRecibido.getCodigo());
         });
 
         saveNombre.setOnClickListener(view -> {
             name = nombre.getText().toString();
+            if (name.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Utilidad.modificarProducto(this,productoRecibido.getCategoria(),"nombre",name,productoRecibido.getCodigo());
         });
 
         savePrecio.setOnClickListener(view -> {
-            price = Double.parseDouble(precio.getText().toString());
+            String entrada = cantidad.getText().toString().trim();
+
+            if (entrada.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+            price = Double.parseDouble(entrada);
             Utilidad.modificarProducto(this,productoRecibido.getCategoria(),"precio",price,productoRecibido.getCodigo());
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Debe introducir un valor numérico válido", Toast.LENGTH_SHORT).show();
+            }
         });
 
         saveCategoria.setOnClickListener(view -> {
-            categoria = spinnerCategoria.getSelectedItem().toString();
+            categoria = spinnerCategoria.getSelectedItem().toString().trim();
+            if (categoria.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             Utilidad.modificarCategoria(this,productoRecibido,categoria,productoRecibido.getCategoria());
         });
 
         saveCantidad.setOnClickListener(view -> {
-            stock = Integer.parseInt(cantidad.getText().toString());
-            Utilidad.modificarProducto(this,productoRecibido.getCategoria(),"cantidad", stock, productoRecibido.getCodigo());
+            String entrada1 = cantidad.getText().toString().trim();
 
+            if (entrada1.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                int stock = Integer.parseInt(entrada1);
+                Utilidad.modificarProducto(this, productoRecibido.getCategoria(), "cantidad", stock, productoRecibido.getCodigo());
+                Toast.makeText(this, "Cantidad actualizada correctamente", Toast.LENGTH_SHORT).show();
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Debe introducir un valor numérico válido", Toast.LENGTH_SHORT).show();
+            }
         });
 
         saveDescripcion.setOnClickListener(view -> {
-            descriptions = descripcion.getText().toString();
+            descriptions = descripcion.getText().toString().trim();
+            if (descriptions.isEmpty()) {
+                Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Utilidad.modificarProducto(this,productoRecibido.getCategoria(),"descripcion", descriptions,productoRecibido.getCodigo());
 
         });
