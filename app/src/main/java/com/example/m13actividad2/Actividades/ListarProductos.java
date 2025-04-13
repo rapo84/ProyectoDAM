@@ -1,6 +1,7 @@
 package com.example.m13actividad2.Actividades;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class ListarProductos extends AppCompatActivity {
 private RecyclerView recyclerView;
 private ProductoAdapter adapter;
 private List<Producto> producto;
-private DatabaseReference dbRef;
+private DatabaseReference productosRef;
 
 
     @Override
@@ -40,21 +41,46 @@ private DatabaseReference dbRef;
        adapter = new ProductoAdapter(producto);
        recyclerView.setAdapter(adapter);
 
-       dbRef = FirebaseDatabase.getInstance().getReference("productos");
+        productosRef = FirebaseDatabase.getInstance()
+                .getReference("localesTotales")
+                .child("sisas") // reemplazar por el nombre del local
+                .child("PRODUCTOS");
 
-        dbRef.addValueEventListener(new ValueEventListener() {
+        cargarProductosDesdeFirebase();
+    }
+
+    private void cargarProductosDesdeFirebase() {
+        // Leer bebidas frías
+        productosRef.child("bebidas_frias").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                producto.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Producto p = data.getValue(Producto.class);
                     producto.add(p);
                 }
-                adapter.notifyDataSetChanged(); // actualizar vista
+                adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // manejar errores
+                Log.e("Firebase", "Error al leer bebidas frías", error.toException());
+            }
+        });
+
+        // Leer bebidas calientes
+        productosRef.child("bebidas_calientes").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Producto p = data.getValue(Producto.class);
+                    producto.add(p);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error al leer bebidas calientes", error.toException());
             }
         });
     }

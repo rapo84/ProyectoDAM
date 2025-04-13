@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
-        android:layout_weight="0.4"
         android:text="Codigo"
         android:textColor="@color/white"
         android:textSize="14dp"
