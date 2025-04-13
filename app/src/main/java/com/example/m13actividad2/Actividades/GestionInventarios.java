@@ -32,11 +32,18 @@ public class GestionInventarios extends AppCompatActivity {
         ListarProductos = findViewById(R.id.bt_inventario_listar);
         ModificarProductos = findViewById(R.id.bt_inventario_modificar);
 
+        ListarProductos.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionInventarios.this, ListarProductos.class);
+            startActivity(intent);
+        });
+
         ModificarProductos.setOnClickListener(view -> {
             Intent intent = new Intent(GestionInventarios.this,ModRemoveProductos.class);
             startActivity(intent);
             finish();
         });
+
+
 
 
     }
