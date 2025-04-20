@@ -3,4 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="parahint">#9E9D9D</color>
+    <color name="fondonegro">#000000</color>
+    <color name="blue">#0000FF</color>
+    <color name="dark_red">#A40606</color>
+    <color name="green">#008000</color>
+    <color name="browm">#4B251C</color>
+    <color name="gray">#444444</color>
 </resources>

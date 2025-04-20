@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000"
+    tools:context=".Actividades.InterfazMesas">
+
+    <!-- Barra superior de acciones -->
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!-- Aquí van los botones -->
+
+        <ImageButton
+            android:id="@+id/bt_mesas_opciones"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@color/fondonegro"
+            android:scaleType="fitCenter"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/engra_blanco" />
+
+        <ImageButton
+            android:id="@+id/bt_mesas_MoverProducto"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:background="@color/fondonegro"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/bt_cambio" />
+
+        <ImageButton
+            android:id="@+id/bt_mesas_Imprimir"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:background="@color/fondonegro"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/bt_check1" />
+
+        <ImageButton
+            android:id="@+id/bt_mesas_BorrarProducto"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:background="@color/fondonegro"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/bt_denegado"/>
+
+    </LinearLayout>
+
+    <!-- Último producto agregado -->
+    <ListView
+        android:id="@+id/list_productos_temp"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/borde_layout"/>
+
+    <!-- Zona inferior: categorías + productos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Categorías -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategorias"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/borde_layout" />
+
+            <Button
+                android:id="@+id/bt_mesas_all_Orders"
+                android:layout_width="match_parent"
+                android:backgroundTint="#F6655E"
+                android:layout_height="wrap_content"
+                android:text="Historial pedidos" />
+        </LinearLayout>
+
+        <!-- Contenedor del fragmento de productos -->
+        <FrameLayout
+            android:id="@+id/contenedorFragmentProductos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/borde_layout"
+            android:layout_weight="2" >
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
