@@ -3,6 +3,7 @@ package com.example.m13actividad2.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +36,7 @@ public class ItemFragment extends Fragment {
 
     private fragmentMesasRecyclerViewAdapter fragmentRecyclerViewAdapter;
     private List<Producto> productos;
-
+    private OnProductoSeleccionadoListener listener;
     private RecyclerView recyclerView;
 
     public ItemFragment() {
@@ -71,7 +72,14 @@ public class ItemFragment extends Fragment {
         Log.i("CategoriaEnFragmento", "EN EL  'ONCREATEVIEW`  ️Categoría recibida en el fragmento: " + categoriaSeleccionada); // Aquí se muestra la categoría que llega al fragmento
         // Inicializar lista y adaptador
         productos = new ArrayList<>();
-        fragmentRecyclerViewAdapter = new fragmentMesasRecyclerViewAdapter(productos);
+
+        /*fragmentRecyclerViewAdapter = new fragmentMesasRecyclerViewAdapter(productos);*/
+
+        fragmentRecyclerViewAdapter = new fragmentMesasRecyclerViewAdapter(productos, producto -> {
+            if (getActivity() instanceof OnProductoSeleccionadoListener) {
+                ((OnProductoSeleccionadoListener) getActivity()).onProductoSeleccionado(producto);
+            }
+        });
 
         // Configurar RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.list);
@@ -89,5 +97,20 @@ public class ItemFragment extends Fragment {
         UtilidadMesas.cargarProductosPorCategoria(context, productos, fragmentRecyclerViewAdapter, categoriaSeleccionada);
 
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnProductoSeleccionadoListener) {
+            listener = (OnProductoSeleccionadoListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " debe implementar OnProductoSeleccionadoListener");
+        }
+    }
+
+    public interface OnProductoSeleccionadoListener {
+        void onProductoSeleccionado(Producto producto);
     }
 }

@@ -16,20 +16,38 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m13actividad2.Adaptadores.CategoriasAdapter;
+import com.example.m13actividad2.Adaptadores.Lista_orden_adaptador;
 import com.example.m13actividad2.Fragment.ItemFragment;
+import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.R;
 import com.example.m13actividad2.utils.UtilidadMesas;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InterfazMesas extends AppCompatActivity {
+public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnProductoSeleccionadoListener {
     private FrameLayout fragment1;
     private ImageButton check, borrar, cambiar, opc;
     private Button all_orders;
-    private RecyclerView rv_categorias;
+    private RecyclerView rv_categorias, rv_temporalOrders;
     private List<String> categ;
     private CategoriasAdapter adapter;
+    private Lista_orden_adaptador adaptador_listas;
+    private List<Producto> productosTemporales;
+
+    @Override
+    public void onProductoSeleccionado(Producto producto) {
+        productosTemporales.add(producto);
+        //adaptador_listas.notifyItemInserted(productosTemporales.size() - 1);
+        adaptador_listas.actualizarLista(productosTemporales);
+        Log.d("ProductoRecibido", "✅ Producto recibido en la actividad: " + producto.getNombre() +"//"+ producto.getCodigo() +"//"+ producto.getCategoria() +"//"+ producto.getCantidad());
+        // ✅ Verificar tamaño de la lista
+        Log.d("TamañoLista", "🟢 Total productos temporales: " + productosTemporales.size());
+        for (Producto p : productosTemporales) {
+            Log.d("ListaActual", "🔹 Producto: " + p.getNombre());
+        }
+
+    }
 
 
     @Override
@@ -52,7 +70,13 @@ public class InterfazMesas extends AppCompatActivity {
         rv_categorias = findViewById(R.id.rvCategorias);
         rv_categorias.setLayoutManager(new LinearLayoutManager(this));
 
+        rv_temporalOrders = findViewById(R.id.rv_orders_temporales);
+        rv_temporalOrders.setLayoutManager(new LinearLayoutManager(this));
+
         categ = new ArrayList<>();
+        productosTemporales = new ArrayList<>();
+
+
         adapter = new CategoriasAdapter(categ, new CategoriasAdapter.OnCategoriaClickListener() {
             @Override
             public void onCategoriaClick(String categoria) {
@@ -68,6 +92,9 @@ public class InterfazMesas extends AppCompatActivity {
             }
         });
         rv_categorias.setAdapter(adapter);
+
+        adaptador_listas = new Lista_orden_adaptador(productosTemporales);
+        rv_temporalOrders.setAdapter(adaptador_listas);
 
 
         UtilidadMesas.obtenercategorias(this,categ, adapter);

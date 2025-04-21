@@ -37,7 +37,7 @@ public class EmpleadoActivity extends AppCompatActivity {
         cambiarAinterfaz.setOnClickListener(view -> {
             Intent intent = new Intent(EmpleadoActivity.this, InterfazMesas.class);
             startActivity(intent);
-            finish();
+
         });
 
     }
