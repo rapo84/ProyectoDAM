@@ -59,11 +59,13 @@
     </LinearLayout>
 
     <!-- Último producto agregado -->
-    <ListView
-        android:id="@+id/list_productos_temp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_orders_temporales"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="@drawable/borde_layout"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:padding="6dp"
+        android:background="@drawable/borde_layout" />
 
     <!-- Zona inferior: categorías + productos -->
     <LinearLayout
