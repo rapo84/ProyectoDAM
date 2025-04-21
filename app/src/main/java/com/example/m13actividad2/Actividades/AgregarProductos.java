@@ -8,12 +8,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.R;
+import com.example.m13actividad2.utils.Utilidad;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,7 +19,6 @@ public class AgregarProductos extends AppCompatActivity {
 
     EditText codigo, nombre, precio, categoria, cantidad;
     Button agregar;
-    String nombreLocal;
 
 
     @Override
@@ -56,7 +53,7 @@ public class AgregarProductos extends AppCompatActivity {
                 Producto producto = new Producto(cod, nom, pre, cat, can);
 
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
-                DatabaseReference ref = db.getReference("Locales").child(nombreLocal).child("Productos");
+                DatabaseReference ref = db.getReference("Locales").child(Utilidad.recupernombrelocal(AgregarProductos.this)).child("Productos");
 
                 ref.child(cat).child(cod).setValue(producto).addOnCompleteListener(Task ->{
                     if (Task.isSuccessful()){
