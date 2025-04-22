@@ -40,7 +40,6 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         productosTemporales.add(producto);
         //adaptador_listas.notifyItemInserted(productosTemporales.size() - 1);
         adaptador_listas.actualizarLista(productosTemporales);
-        Log.d("ProductoRecibido", "✅ Producto recibido en la actividad: " + producto.getNombre() +"//"+ producto.getCodigo() +"//"+ producto.getCategoria() +"//"+ producto.getCantidad());
         // ✅ Verificar tamaño de la lista
         Log.d("TamañoLista", "🟢 Total productos temporales: " + productosTemporales.size());
         for (Producto p : productosTemporales) {
@@ -98,6 +97,10 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
 
 
         UtilidadMesas.obtenercategorias(this,categ, adapter);
+
+        check.setOnClickListener(v -> {
+
+        });
 
 
 
