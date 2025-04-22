@@ -85,6 +85,7 @@ public class ListarProductos extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e(TAG, "Error leyendo productos", error.toException());
             }
+
         });
     }
 }
