@@ -232,9 +232,10 @@ public class Utilidad {
     }
 
     /*  ///////////VERIFICAMOS LOS CLAIMS DEL USUARIO PERO ESTE SERIA PARA SABER SI TIENE LOCAL Y CATEGOIA CORRECTAS, LO USAREMOS PARA LOS PERMISOS DE LA BBDD//////////  */
-    public static void checkUserRoleParaSaberSiTienePermisos(Context context, String rolesperado, String localesperado) {
+    public static void checkUserRoleParaSaberSiTienePermisos(Context context, String rolesperado) {
+        String nombrelocal = recupernombrelocal(context);
         // Llama al método checkUserRole
-        checkUserRole(context, rolesperado, localesperado,new RoleCheckCallback() {
+        checkUserRole(context, rolesperado, nombrelocal,new RoleCheckCallback() {
             @Override
             public void onRoleChecked(boolean tieneElRol) {
                 if (tieneElRol) {

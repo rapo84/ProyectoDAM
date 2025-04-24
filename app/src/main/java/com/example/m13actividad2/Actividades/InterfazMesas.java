@@ -1,5 +1,6 @@
 package com.example.m13actividad2.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -33,7 +34,9 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
     private List<String> categ;
     private CategoriasAdapter adapter;
     private Lista_orden_adaptador adaptador_listas;
-    private List<Producto> productosTemporales;
+    private List<Producto> productosTemporales, lispapasable;
+    private String mesaSeleccionada = "Mesa06";     //⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ inicializarla sin valor ya que el valor lo recuperamos con la actividad anterior
+
 
     @Override
     public void onProductoSeleccionado(Producto producto) {
@@ -75,6 +78,9 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         categ = new ArrayList<>();
         productosTemporales = new ArrayList<>();
 
+        //obtenemos el numero de mesa de la actividad anterior que nos la pasa con el intent   ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+        //mesaSeleccionada = "Mesa"+getIntent().getStringExtra("numeroMesa");
+
 
         adapter = new CategoriasAdapter(categ, new CategoriasAdapter.OnCategoriaClickListener() {
             @Override
@@ -90,15 +96,56 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
                         .commit();
             }
         });
+
+
         rv_categorias.setAdapter(adapter);
 
         adaptador_listas = new Lista_orden_adaptador(productosTemporales);
         rv_temporalOrders.setAdapter(adaptador_listas);
 
+        /*
+        // Configura el listener para el click en los items del recyclerview de la lista temporal
+        adaptador_listas.setOnItemClickListener(new Lista_orden_adaptador.OnItemClickListener() {
+            @Override
+            public void onItemClick(Producto producto, int position) {
+                // Aquí manejas el click en el item
+                adaptador_listas.mostrarDialogoConfirmacion(InterfazMesas.this,producto, position, productosTemporales);
+                /*borramos por completo la lista temporal para reemplazarla por la lista actualizada de esta manera evitamos que se repitan los productos y
+                 solo se van modificando las cantidades y dentro de la lista quedan los objetos productos con sus respectivas cantidades  ⚠️⚠️⚠️*/ /*
+                productosTemporales.clear();
+                productosTemporales = adaptador_listas.getListarProductos();
+                adaptador_listas.notifyDataSetChanged();
+            }
+        });*/
+
+        adaptador_listas.setOnItemClickListener(new Lista_orden_adaptador.OnItemClickListener() {
+            @Override
+            public void onItemClick(Producto producto, int position) {
+                // Aquí manejas el click en el item
+                adaptador_listas.mostrarDialogoConfirmacion(InterfazMesas.this,producto, position, productosTemporales);
+            }
+        });
 
         UtilidadMesas.obtenercategorias(this,categ, adapter);
 
         check.setOnClickListener(v -> {
+
+            lispapasable=adaptador_listas.getListarProductos();
+            Log.e("TamañoLista", "🟢 Total productos temporales: " + lispapasable.size());
+            for (Producto p : lispapasable) {
+                Log.i("ListaActual", "🔹 Producto: " + p.getNombre());
+            }
+            UtilidadMesas.guardarPedidosEnElHistorial(this,lispapasable,mesaSeleccionada);  //⚠️⚠️⚠️⚠️⚠️⚠️ cambiar la variable de mesa por la que corresponda
+            productosTemporales.clear();
+            adaptador_listas.setListaProductos(new ArrayList<>());  // Esto debe actualizar la lista interna
+            adaptador_listas.notifyDataSetChanged(); // Y forzar el refresco visual
+
+        });
+
+        all_orders.setOnClickListener(v -> {
+            Intent intent = new Intent(InterfazMesas.this, Listado_ordenes_varias.class);
+            intent.putExtra("numeroMesa", mesaSeleccionada);  //⚠️⚠️⚠️⚠️⚠️⚠️ cambiar la variable de mesa por la que corresponda
+            startActivity(intent);
 
         });
 
