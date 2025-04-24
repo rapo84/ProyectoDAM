@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.m13actividad2.Adaptadores.ProductoAdapter;
 import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.R;
+import com.example.m13actividad2.utils.Utilidad;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +37,7 @@ public class ListarProductos extends AppCompatActivity {
         setContentView(R.layout.activity_listar_productos);
 
         // 1) Recupera el ID del local o usa "sisas" por defecto
-        String idLocal = getIntent().getStringExtra("localId");
-        if (idLocal == null) idLocal = "sisas";
+        String idLocal = Utilidad.recupernombrelocal(this);
 
         // 2) RecyclerView + Adapter
         recyclerView = findViewById(R.id.rVListarProductos);
