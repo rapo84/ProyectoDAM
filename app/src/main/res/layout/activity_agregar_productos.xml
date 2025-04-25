@@ -56,6 +56,7 @@
         android:textColorHint="@color/material_dynamic_neutral40"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTCod" />
 
@@ -69,21 +70,9 @@
         android:textColorHint="@color/material_dynamic_neutral40"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTNom" />
-
-    <EditText
-        android:id="@+id/eTCat"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="CATEGORIA"
-        android:inputType="text"
-        android:textColor="@color/white"
-        android:textColorHint="@color/material_dynamic_neutral40"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eTPrecio" />
 
     <EditText
         android:id="@+id/eTCantidad"
@@ -95,20 +84,40 @@
         android:textColorHint="@color/material_dynamic_neutral40"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eTCat" />
+        app:layout_constraintTop_toBottomOf="@+id/SpinCat" />
 
     <Button
         android:id="@+id/btnAgregar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="88dp"
         android:backgroundTint="#F6655E"
         android:text="AGREGAR"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTCantidad" />
+
+    <Button
+        android:id="@+id/btnAtras"
+        android:layout_width="90dp"
+        android:layout_height="41dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="#F6655E"
+        android:text="Atras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/SpinCat"
+        android:layout_width="301dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eTPrecio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

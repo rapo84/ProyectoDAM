@@ -47,4 +47,6 @@ dependencies {
     implementation("com.google.firebase:firebase-database")                   // se agrego para poder usar el firebase database realtime
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
 }

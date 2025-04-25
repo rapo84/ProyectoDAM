@@ -38,6 +38,12 @@ public class GestionInventarios extends AppCompatActivity {
             finish();
         });
 
+        AgregarProducto.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionInventarios.this,AgregarProductos.class);
+            startActivity(intent);
+            finish();
+        });
+
 
     }
 }
