@@ -18,8 +18,8 @@ import com.example.m13actividad2.interfaces.SelecconImpresoraCallBack;
 import com.example.m13actividad2.utils.Utilidad;
 
 public class GestionEstablecimiento extends AppCompatActivity {
-    private ImageButton GuardarNumMesas, EnlazarPrint;
-    private EditText EtnumMesas;
+    private ImageButton GuardarNumMesas, EnlazarPrint, GuardarCorreo, GuardarTelefono;
+    private EditText EtnumMesas, EtCorreo, EtTelefono;
     private int NumeroDeMesas;
 
 
@@ -37,6 +37,10 @@ public class GestionEstablecimiento extends AppCompatActivity {
         EnlazarPrint = findViewById(R.id.imgbt_opc_establecimiento_setImpresora);
         GuardarNumMesas = findViewById(R.id.bt_opc_establecimiento_guardarnumMesas);
         EtnumMesas = findViewById(R.id.et_opc_establecimiento_numero_mesas);
+        GuardarCorreo = findViewById(R.id.bt_opc_establecimiento_guardar_mail);
+        GuardarTelefono = findViewById(R.id.bt_opc_establecimiento_guardar_telefono);
+        EtCorreo = findViewById(R.id.et_opc_establecimiento_mail);
+        EtTelefono = findViewById(R.id.et_opc_establecimiento_telefono);
 
 
         GuardarNumMesas.setOnClickListener(view -> {
@@ -66,6 +70,25 @@ public class GestionEstablecimiento extends AppCompatActivity {
                 }
             });
 
+        });
+
+        GuardarCorreo.setOnClickListener(view -> {
+            String Correo = EtCorreo.getText().toString().trim();
+            if (Correo.isEmpty()){
+                Toast.makeText(this, "Ingrese un correo", Toast.LENGTH_SHORT).show();
+            }else {
+                Utilidad.guardarDatoLocalmente(this,Correo,"Correo");
+            }
+        });
+
+        GuardarTelefono.setOnClickListener(view -> {
+            String Telefono = EtTelefono.getText().toString().trim();
+            if (Telefono.isEmpty()){
+                Toast.makeText(this, "Ingrese un telefono", Toast.LENGTH_SHORT).show();
+            }else {
+                Utilidad.guardarDatoLocalmente(this,Telefono,"Telefono");
+
+            }
         });
 
 
