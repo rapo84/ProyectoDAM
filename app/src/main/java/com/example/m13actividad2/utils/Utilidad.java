@@ -75,6 +75,7 @@ public class Utilidad {
     /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         GESTIONAR ARCHIVOS EN LOCAL PARA LA APP
+        variables dentro del archivo: "NombreLocal", "NumMesas", "Impresora"
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -90,6 +91,40 @@ public class Utilidad {
             Toast.makeText(context,"El nombre del local no puede estar vacio",Toast.LENGTH_SHORT).show();
         }
     }
+    public static String recupernombrelocal(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String nombreLocal = prefs.getString("NombreLocal", null); // Devuelve null si no existe la clave
+
+        if (nombreLocal == null) {
+            return ""; // Devuelve una cadena vacía en lugar de null para evitar posibles errores  MANEJAR CON UN TOAST DONDE LO LLAMEMOS
+        } else {
+            return nombreLocal;
+        }
+    }
+
+    public static void guardarDatoLocalmente(Context context, String DatoGurdar, String claveObjeto) {
+        if (!DatoGurdar.trim().isEmpty()) {
+            SharedPreferences prefs = context.getSharedPreferences("UserData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString(claveObjeto, DatoGurdar);
+            editor.apply();
+            String confirm = recuperDatoslocal(context, claveObjeto);
+            Log.i("Local enlazado:", confirm);
+        }else{
+            Toast.makeText(context,"El nombre del local no puede estar vacio",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static String recuperDatoslocal(Context context, String claveObjeto) {
+        SharedPreferences prefs = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String DatoObtenido = prefs.getString(claveObjeto, null); // Devuelve null si no existe la clave
+
+        if (DatoObtenido == null) {
+            return ""; // Devuelve una cadena vacía en lugar de null para evitar posibles errores  MANEJAR CON UN TOAST DONDE LO LLAMEMOS
+        } else {
+            return DatoObtenido;
+        }
+    }
 
     public static void guardarnumMEsas(Context context, int numMesas) {
         if (numMesas > 0) {
@@ -102,17 +137,6 @@ public class Utilidad {
             Log.i("# de mesas guaradado:", "num de mesas= " + confirm);
         }else{
             Toast.makeText(context,"el valor debe ser mayor a 0",Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public static String recupernombrelocal(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        String nombreLocal = prefs.getString("NombreLocal", null); // Devuelve null si no existe la clave
-
-        if (nombreLocal == null) {
-            return ""; // Devuelve una cadena vacía en lugar de null para evitar posibles errores  MANEJAR CON UN TOAST DONDE LO LLAMEMOS
-        } else {
-            return nombreLocal;
         }
     }
 
