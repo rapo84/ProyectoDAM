@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AgregarProductos extends AppCompatActivity {
 
     EditText codigo, nombre, precio, cantidad;
-    Button agregar, atras;
+    Button agregar;
     Spinner categoria;
 
 
@@ -39,7 +39,6 @@ public class AgregarProductos extends AppCompatActivity {
         cantidad = findViewById(R.id.eTCantidad);
         agregar = findViewById(R.id.btnAgregar);
         categoria = findViewById(R.id.SpinCat);
-        atras = findViewById(R.id.btnAtras);
 
         String[] categorias = {"Selecciona una categoria","Bebidas frias", "Bebidas calientes", "Bolleria", "Pasteleria", "Comidas", "Desayunos", "Meriendas"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.item_spinner_personalizado, categorias){
@@ -97,7 +96,5 @@ public class AgregarProductos extends AppCompatActivity {
                 }
             });
         });
-        atras.setOnClickListener(v -> finish());
-
     }
 }
