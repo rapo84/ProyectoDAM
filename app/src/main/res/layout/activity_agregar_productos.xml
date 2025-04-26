@@ -87,18 +87,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SpinCat" />
 
+    <EditText
+        android:id="@+id/etDesc"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Descripción"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/material_dynamic_neutral40"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eTCantidad" />
+
     <Button
         android:id="@+id/btnAgregar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#F6655E"
         android:text="AGREGAR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eTCantidad" />
+        app:layout_constraintTop_toBottomOf="@+id/etDesc" />
 
     <Spinner
         android:id="@+id/SpinCat"

@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AgregarProductos extends AppCompatActivity {
 
-    EditText codigo, nombre, precio, cantidad;
+    EditText codigo, nombre, precio, cantidad, descripcion;
     Button agregar;
     Spinner categoria;
 
@@ -39,6 +39,7 @@ public class AgregarProductos extends AppCompatActivity {
         cantidad = findViewById(R.id.eTCantidad);
         agregar = findViewById(R.id.btnAgregar);
         categoria = findViewById(R.id.SpinCat);
+        descripcion = findViewById(R.id.etDesc);
 
         String[] categorias = {"Selecciona una categoria","Bebidas frias", "Bebidas calientes", "Bolleria", "Pasteleria", "Comidas", "Desayunos", "Meriendas"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.item_spinner_personalizado, categorias){
@@ -65,13 +66,14 @@ public class AgregarProductos extends AppCompatActivity {
 
         agregar.setOnClickListener(v -> {
             if (codigo.getText().toString().isEmpty() || nombre.getText().toString().isEmpty() || precio.getText().toString().isEmpty()
-                    || cantidad.getText().toString().isEmpty() || categoria.getSelectedItem().toString().isEmpty()) {
+                    || cantidad.getText().toString().isEmpty() || categoria.getSelectedItem().toString().isEmpty() || descripcion.getText().toString().isEmpty()) {
                 Toast.makeText(AgregarProductos.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
                 return;
             }
             String cod = codigo.getText().toString();
             String nom = nombre.getText().toString();
             String cat = categoria.getSelectedItem().toString();
+            String desc = descripcion.getText().toString();
 
             double pre;
             int can;
