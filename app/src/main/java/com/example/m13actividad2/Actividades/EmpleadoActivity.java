@@ -1,5 +1,6 @@
 package com.example.m13actividad2.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -13,7 +14,7 @@ import com.example.m13actividad2.utils.Utilidad;
 import com.example.m13actividad2.R;
 
 public class EmpleadoActivity extends AppCompatActivity {
-    private Button Salir;
+    private Button Salir, cambiarAinterfaz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,16 @@ public class EmpleadoActivity extends AppCompatActivity {
         });
 
         Salir = findViewById(R.id.bt_empleado_logout);
+        cambiarAinterfaz = findViewById(R.id.mostrar_interfaz_mesas);
 
         Salir.setOnClickListener(view -> {
             Utilidad.cerrarSesionYRedirigir(this, Ventana_Inicial.class);
+        });
+
+        cambiarAinterfaz.setOnClickListener(view -> {
+            Intent intent = new Intent(EmpleadoActivity.this, InterfazMesas.class);
+            startActivity(intent);
+
         });
 
     }
