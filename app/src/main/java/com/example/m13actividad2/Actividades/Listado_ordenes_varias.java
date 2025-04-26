@@ -94,13 +94,10 @@ public class Listado_ordenes_varias extends AppCompatActivity {
         });
 
         Imprimir.setOnClickListener(view -> {
-
-            ImpresionBt.Imprimir(this, lista, totalFormateado, mesaSeleccionada);
-
+            //ImpresionBt.Imprimir(this, lista, totalFormateado, mesaSeleccionada);
         });
 
         ImprimirYcerrarMesa.setOnClickListener(view -> {
-            //ImpresionBt.Imprimir(this, lista, totalFormateado, mesaSeleccionada);
             UtilidadMesas.mostrarDialogoConfirmacionLiberarmesa("Estas seguro que quieres liberar la mesa, esto ELIMINARA por completo los datos de la mesa?", this, mesaSeleccionada, lista, totalFormateado);
 
         });

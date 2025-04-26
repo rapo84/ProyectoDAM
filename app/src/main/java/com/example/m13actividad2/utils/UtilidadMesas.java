@@ -237,4 +237,27 @@ public class UtilidadMesas {
         });
     }
 
+    public static void actualizarInventario(Context context, List<Producto> productos) {
+        String nombreLocal = Utilidad.recupernombrelocal(context);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                .getReference("Locales").child(nombreLocal).child("Productos");
+
+        // Creamos un mapa para actualizar todo de golpe
+        Map<String, Object> nuevosProductos = new HashMap<>();
+
+        for (Producto producto : productos) {
+            nuevosProductos.put(producto.getCodigo(), producto);
+        }
+
+        databaseReference.setValue(nuevosProductos)
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(context, "Inventario actualizado", Toast.LENGTH_SHORT).show()
+                )
+                .addOnFailureListener(e ->
+                        Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show()
+                );
+    }
+
+
+
 }
