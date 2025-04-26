@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:backgroundTint="#1F0707"
     tools:context=".Actividades.AgregarProductos">
 
     <TextView
