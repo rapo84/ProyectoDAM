@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m13actividad2.Adaptadores.CategoriasAdapter;
 import com.example.m13actividad2.Adaptadores.Lista_orden_adaptador;
+import com.example.m13actividad2.ConextionsPrint.ImpresionBt;
 import com.example.m13actividad2.Fragment.ItemFragment;
 import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.R;
@@ -103,21 +104,6 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         adaptador_listas = new Lista_orden_adaptador(productosTemporales);
         rv_temporalOrders.setAdapter(adaptador_listas);
 
-        /*
-        // Configura el listener para el click en los items del recyclerview de la lista temporal
-        adaptador_listas.setOnItemClickListener(new Lista_orden_adaptador.OnItemClickListener() {
-            @Override
-            public void onItemClick(Producto producto, int position) {
-                // Aquí manejas el click en el item
-                adaptador_listas.mostrarDialogoConfirmacion(InterfazMesas.this,producto, position, productosTemporales);
-                /*borramos por completo la lista temporal para reemplazarla por la lista actualizada de esta manera evitamos que se repitan los productos y
-                 solo se van modificando las cantidades y dentro de la lista quedan los objetos productos con sus respectivas cantidades  ⚠️⚠️⚠️*/ /*
-                productosTemporales.clear();
-                productosTemporales = adaptador_listas.getListarProductos();
-                adaptador_listas.notifyDataSetChanged();
-            }
-        });*/
-
         adaptador_listas.setOnItemClickListener(new Lista_orden_adaptador.OnItemClickListener() {
             @Override
             public void onItemClick(Producto producto, int position) {
@@ -129,8 +115,8 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         UtilidadMesas.obtenercategorias(this,categ, adapter);
 
         check.setOnClickListener(v -> {
-
             lispapasable=adaptador_listas.getListarProductos();
+            ImpresionBt.ImprimirListaTemporales(this,lispapasable,mesaSeleccionada);
             Log.e("TamañoLista", "🟢 Total productos temporales: " + lispapasable.size());
             for (Producto p : lispapasable) {
                 Log.i("ListaActual", "🔹 Producto: " + p.getNombre());

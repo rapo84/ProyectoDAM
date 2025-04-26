@@ -18,9 +18,10 @@ import com.example.m13actividad2.interfaces.SelecconImpresoraCallBack;
 import com.example.m13actividad2.utils.Utilidad;
 
 public class GestionEstablecimiento extends AppCompatActivity {
-    private ImageButton GuardarNumMesas, EnlazarPrint, GuardarCorreo, GuardarTelefono;
-    private EditText EtnumMesas, EtCorreo, EtTelefono;
+    private ImageButton GuardarNumMesas, EnlazarPrint, GuardarCorreo, GuardarTelefono, GuardarIva;
+    private EditText EtnumMesas, EtCorreo, EtTelefono, etPorcentajeIva;
     private int NumeroDeMesas;
+    private Button Salir;
 
 
     @Override
@@ -39,8 +40,13 @@ public class GestionEstablecimiento extends AppCompatActivity {
         EtnumMesas = findViewById(R.id.et_opc_establecimiento_numero_mesas);
         GuardarCorreo = findViewById(R.id.bt_opc_establecimiento_guardar_mail);
         GuardarTelefono = findViewById(R.id.bt_opc_establecimiento_guardar_telefono);
+        GuardarIva = findViewById(R.id.bt_opc_establecimiento_guardar_porcentaje);
         EtCorreo = findViewById(R.id.et_opc_establecimiento_mail);
         EtTelefono = findViewById(R.id.et_opc_establecimiento_telefono);
+        etPorcentajeIva = findViewById(R.id.et_porcentaje_iva);
+        Salir = findViewById(R.id.bt_GE_logout);
+
+
 
 
         GuardarNumMesas.setOnClickListener(view -> {
@@ -89,6 +95,25 @@ public class GestionEstablecimiento extends AppCompatActivity {
                 Utilidad.guardarDatoLocalmente(this,Telefono,"Telefono");
 
             }
+        });
+
+        GuardarIva.setOnClickListener(view -> {
+            try {
+                Double Iva = Double.parseDouble(etPorcentajeIva.getText().toString().trim());
+                if (Iva>0){
+                    Utilidad.guardarDatoLocalmente(this,Iva.toString(),"Iva");
+                }else {
+                    Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show();
+                }
+            }catch (NumberFormatException e){
+                Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+        Salir.setOnClickListener(view -> {
+            Utilidad.cerrarSesionYRedirigir(this, Ventana_Inicial.class);
         });
 
 

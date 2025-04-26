@@ -54,7 +54,7 @@ public class ListaFinalAdaptador extends RecyclerView.Adapter<ListaFinalAdaptado
         // Evento de clic en el botón de eliminar
         holder.btnEliminar.setOnClickListener(v -> {
             //lamamos al metodo que mostrara el mensaje de confirmacion antes de eliminar definitivamente a un emmpleado de la BBDD
-            mostrarDialogoConfirmacion("Estas seguro de querer eliminar a este empleado?", context, p, position, mesaSeleccionada);
+            mostrarDialogoConfirmacion("Estas seguro de querer eliminar este producto?", context, p, position, mesaSeleccionada);
 
         });
 

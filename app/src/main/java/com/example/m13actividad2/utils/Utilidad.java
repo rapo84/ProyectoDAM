@@ -110,6 +110,7 @@ public class Utilidad {
             editor.apply();
             String confirm = recuperDatoslocal(context, claveObjeto);
             Log.i("Local enlazado:", confirm);
+            Toast.makeText(context,claveObjeto + " se ha guardado correctamente",Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(context,"El nombre del local no puede estar vacio",Toast.LENGTH_SHORT).show();
         }
@@ -135,6 +136,7 @@ public class Utilidad {
             int num = recupernumMesas(context);
             String confirm = String.valueOf(num);
             Log.i("# de mesas guaradado:", "num de mesas= " + confirm);
+            Toast.makeText(context,"El numero de mesas se ha guardado correctamente",Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(context,"el valor debe ser mayor a 0",Toast.LENGTH_SHORT).show();
         }
