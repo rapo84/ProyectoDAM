@@ -85,7 +85,7 @@ public class AgregarProductos extends AppCompatActivity {
                 return;
             }
 
-            Producto producto = new Producto(cod, nom, pre, cat, can);
+            Producto producto = new Producto(cod, nom, pre,desc, cat, can);
 
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             DatabaseReference ref = db.getReference("Locales").child(Utilidad.recupernombrelocal(AgregarProductos.this)).child("Productos");
