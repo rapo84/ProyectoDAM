@@ -242,21 +242,20 @@ public class UtilidadMesas {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                 .getReference("Locales").child(nombreLocal).child("Productos");
 
-        // Creamos un mapa para actualizar todo de golpe
-        Map<String, Object> nuevosProductos = new HashMap<>();
-
-        for (Producto producto : productos) {
-            nuevosProductos.put(producto.getCodigo(), producto);
+        try {
+            for (Producto producto : productos) {
+                databaseReference.child(producto.getCodigo())
+                        .removeValue()
+                        .addOnFailureListener(e ->
+                                Toast.makeText(context, "Error al borrar producto: " + producto.getNombre(), Toast.LENGTH_SHORT).show()
+                        );
+            }
+            Toast.makeText(context, "Productos eliminados del inventario", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show();
         }
-
-        databaseReference.setValue(nuevosProductos)
-                .addOnSuccessListener(aVoid ->
-                        Toast.makeText(context, "Inventario actualizado", Toast.LENGTH_SHORT).show()
-                )
-                .addOnFailureListener(e ->
-                        Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show()
-                );
     }
+
 
 
 
