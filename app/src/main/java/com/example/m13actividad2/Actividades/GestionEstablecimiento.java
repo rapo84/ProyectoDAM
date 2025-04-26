@@ -12,13 +12,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.m13actividad2.ConextionsPrint.ImpresionBt;
 import com.example.m13actividad2.R;
+import com.example.m13actividad2.interfaces.SelecconImpresoraCallBack;
 import com.example.m13actividad2.utils.Utilidad;
 
 public class GestionEstablecimiento extends AppCompatActivity {
-    private ImageButton GuardarNumMesas, EnlazarPrint;
-    private EditText EtnumMesas;
+    private ImageButton GuardarNumMesas, EnlazarPrint, GuardarCorreo, GuardarTelefono, GuardarIva;
+    private EditText EtnumMesas, EtCorreo, EtTelefono, etPorcentajeIva;
     private int NumeroDeMesas;
+    private Button Salir;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,19 @@ public class GestionEstablecimiento extends AppCompatActivity {
             return insets;
         });
 
+        EnlazarPrint = findViewById(R.id.imgbt_opc_establecimiento_setImpresora);
         GuardarNumMesas = findViewById(R.id.bt_opc_establecimiento_guardarnumMesas);
         EtnumMesas = findViewById(R.id.et_opc_establecimiento_numero_mesas);
+        GuardarCorreo = findViewById(R.id.bt_opc_establecimiento_guardar_mail);
+        GuardarTelefono = findViewById(R.id.bt_opc_establecimiento_guardar_telefono);
+        GuardarIva = findViewById(R.id.bt_opc_establecimiento_guardar_porcentaje);
+        EtCorreo = findViewById(R.id.et_opc_establecimiento_mail);
+        EtTelefono = findViewById(R.id.et_opc_establecimiento_telefono);
+        etPorcentajeIva = findViewById(R.id.et_porcentaje_iva);
+        Salir = findViewById(R.id.bt_GE_logout);
+
+
+
 
         GuardarNumMesas.setOnClickListener(view -> {
             NumeroDeMesas = 0;
@@ -52,6 +67,55 @@ public class GestionEstablecimiento extends AppCompatActivity {
 
 
         });
+
+        EnlazarPrint.setOnClickListener(view -> {
+            ImpresionBt.SeleccionarImpresora(this, new SelecconImpresoraCallBack() {
+                @Override
+                public void onImpresoraSeleccionada(String printerName) {
+                    Utilidad.guardarDatoLocalmente(GestionEstablecimiento.this,printerName,"Impresora");
+                }
+            });
+
+        });
+
+        GuardarCorreo.setOnClickListener(view -> {
+            String Correo = EtCorreo.getText().toString().trim();
+            if (Correo.isEmpty()){
+                Toast.makeText(this, "Ingrese un correo", Toast.LENGTH_SHORT).show();
+            }else {
+                Utilidad.guardarDatoLocalmente(this,Correo,"Correo");
+            }
+        });
+
+        GuardarTelefono.setOnClickListener(view -> {
+            String Telefono = EtTelefono.getText().toString().trim();
+            if (Telefono.isEmpty()){
+                Toast.makeText(this, "Ingrese un telefono", Toast.LENGTH_SHORT).show();
+            }else {
+                Utilidad.guardarDatoLocalmente(this,Telefono,"Telefono");
+
+            }
+        });
+
+        GuardarIva.setOnClickListener(view -> {
+            try {
+                Double Iva = Double.parseDouble(etPorcentajeIva.getText().toString().trim());
+                if (Iva>0){
+                    Utilidad.guardarDatoLocalmente(this,Iva.toString(),"Iva");
+                }else {
+                    Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show();
+                }
+            }catch (NumberFormatException e){
+                Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+        Salir.setOnClickListener(view -> {
+            Utilidad.cerrarSesionYRedirigir(this, Ventana_Inicial.class);
+        });
+
 
     }
 }

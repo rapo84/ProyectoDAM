@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:background="#000000"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Actividades.GestionEstablecimiento">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/bt_GE_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#E7312A"
         android:text="Cerrar Sesion"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_mesas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="36dp"
         android:background="@color/material_dynamic_neutral40"
         android:text="MESAS"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tw_titulo_opcioneslocal" />
 
     <EditText
         android:id="@+id/et_opc_establecimiento_numero_mesas"
@@ -54,8 +52,8 @@
         android:id="@+id/tv_num_mesas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="36dp"
         android:text="NUM MESAS"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
@@ -65,10 +63,10 @@
         android:id="@+id/bt_opc_establecimiento_guardarnumMesas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginTop="32dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toEndOf="@+id/et_opc_establecimiento_numero_mesas"
         app:layout_constraintTop_toBottomOf="@+id/tv_mesas"
         app:srcCompat="@android:drawable/ic_menu_save" />
@@ -77,25 +75,25 @@
         android:id="@+id/tv_impresorabt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="44dp"
         android:background="@color/material_dynamic_neutral40"
         android:text="IMPRESORA"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
         app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_numero_mesas" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imgbt_opc_establecimiento_setImpresora"
         android:layout_width="56dp"
         android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="#000000"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toEndOf="@+id/tv_name_impresora"
         app:layout_constraintTop_toBottomOf="@+id/tv_impresorabt"
         app:srcCompat="@drawable/print_icon" />
@@ -105,23 +103,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:text="SET IMPRESORA"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
         app:layout_constraintTop_toBottomOf="@+id/tv_impresorabt" />
 
     <TextView
+        android:id="@+id/tv_opc_establecimiento_telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="TELEFONO"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_mail" />
+
+    <EditText
+        android:id="@+id/et_opc_establecimiento_telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="(+XX) xxx xxx xx"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/material_dynamic_neutral40"
+        app:layout_constraintStart_toEndOf="@+id/tv_opc_establecimiento_telefono"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_mail" />
+
+    <TextView
         android:id="@+id/tw_titulo_opcioneslocal"
-        android:layout_width="215dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="461dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
         android:text="OPCIONES DEL ESTABLECIMIENTO"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -130,6 +152,109 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="340dp" />
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintGuide_begin="0dp"/>
+
+    <TextView
+        android:id="@+id/Titulo_pie_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="DATOS PARA EL PIE DEL TICEKT"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tw_titulo_opcioneslocal" />
+
+    <TextView
+        android:id="@+id/tv_opc_establecimiento_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="CORREO"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo_pie_ticket" />
+
+    <ImageButton
+        android:id="@+id/bt_opc_establecimiento_guardar_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toEndOf="@+id/et_opc_establecimiento_mail"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo_pie_ticket"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <ImageButton
+        android:id="@+id/bt_opc_establecimiento_guardar_telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toEndOf="@+id/et_opc_establecimiento_telefono"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_mail"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <EditText
+        android:id="@+id/et_opc_establecimiento_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Correo electronico"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/material_dynamic_neutral40"
+        app:layout_constraintStart_toEndOf="@+id/tv_opc_establecimiento_mail"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo_pie_ticket" />
+
+    <TextView
+        android:id="@+id/tv_iva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:text="% IVA"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_telefono" />
+
+    <EditText
+        android:id="@+id/et_porcentaje_iva"
+        android:layout_width="118dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="% IVA"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/material_dynamic_neutral40"
+        app:layout_constraintStart_toEndOf="@+id/tv_iva"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_telefono" />
+
+    <ImageButton
+        android:id="@+id/bt_opc_establecimiento_guardar_porcentaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="0.624"
+        app:layout_constraintStart_toEndOf="@+id/et_porcentaje_iva"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_telefono"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

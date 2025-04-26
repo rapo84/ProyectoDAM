@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.m13actividad2"
-        minSdk = 26
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -31,6 +31,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -39,9 +42,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("androidx.fragment:fragment:1.6.2")                       // estas dependencias son para mayor control sobre los fragment
     implementation(platform("com.google.firebase:firebase-bom:33.9.0"))       //se agrego porque esto obtiene la version correcta de las dependencias que usemos del firebase
     implementation("com.google.firebase:firebase-auth")                       // se agrego para usar el auth de firebase
     implementation("com.google.firebase:firebase-database")                   // se agrego para poder usar el firebase database realtime
