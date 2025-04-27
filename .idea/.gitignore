@@ -1,3 +1,6 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# Ignorar carpeta de configuracion de Android Studio
+.idea/
