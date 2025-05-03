@@ -237,24 +237,41 @@ public class UtilidadMesas {
         });
     }
 
-    public static void actualizarInventario(Context context, List<Producto> productos) {
+    public static void actualizarInventario(Context context, List<Producto> productosFinalesMesa) {
         String nombreLocal = Utilidad.recupernombrelocal(context);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                 .getReference("Locales").child(nombreLocal).child("Productos");
 
         try {
-            for (Producto producto : productos) {
-                databaseReference.child(producto.getCodigo())
-                        .removeValue()
-                        .addOnFailureListener(e ->
-                                Toast.makeText(context, "Error al borrar producto: " + producto.getNombre(), Toast.LENGTH_SHORT).show()
-                        );
-            }
-            Toast.makeText(context, "Productos eliminados del inventario", Toast.LENGTH_SHORT).show();
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    for (Producto productoMesa : productosFinalesMesa) {
+                        String codigo = productoMesa.getCodigo();
+                        if (snapshot.hasChild(codigo)) {
+                            DataSnapshot productoSnapshot = snapshot.child(codigo);
+                            int cantidadActual = productoSnapshot.child("cantidad").getValue(Integer.class);
+                            int nuevaCantidad = cantidadActual + productoMesa.getCantidad();
+
+                            databaseReference.child(codigo).child("cantidad").setValue(nuevaCantidad)
+                                    .addOnFailureListener(e ->
+                                            Toast.makeText(context, "Error al actualizar producto: " + productoMesa.getNombre(), Toast.LENGTH_SHORT).show()
+                                    );
+                        }
+                    }
+                    Toast.makeText(context, "Inventario actualizado correctamente", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Toast.makeText(context, "Error al leer inventario", Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (Exception e) {
             Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
 
