@@ -241,7 +241,6 @@ public class UtilidadMesas {
         String nombreLocal = Utilidad.recupernombrelocal(context);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                 .getReference("Locales").child(nombreLocal).child("Productos");
-
         try {
             for (Producto producto : productos) {
                 databaseReference.child(producto.getCodigo())
