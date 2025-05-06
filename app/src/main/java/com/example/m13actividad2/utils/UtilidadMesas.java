@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m13actividad2.Adaptadores.ListaFinalAdaptador;
@@ -177,6 +178,7 @@ public class UtilidadMesas {
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Aquí puedes realizar la acción que quieres que ocurra al aceptar
+
                         LiberarMesa(context,mesaseleccionada,lista,totalFormateado);
                     }
                 })
@@ -201,6 +203,7 @@ public class UtilidadMesas {
             @Override
             public void onRoleChecked(boolean tieneElRol) {
                 if (tieneElRol) {
+                    UtilidadMesas.actualizarInventario(context, lista);
                     databaseReference.child(mesaseleccionada).removeValue().addOnSuccessListener(aVoid -> {
                         ImpresionBt.Imprimir(context, lista, totalFormateado, mesaseleccionada);
                         Toast.makeText(context, "Mesa liberada", Toast.LENGTH_SHORT).show();
@@ -236,43 +239,53 @@ public class UtilidadMesas {
             }
         });
     }
+    
 
     public static void actualizarInventario(Context context, List<Producto> productosFinalesMesa) {
         String nombreLocal = Utilidad.recupernombrelocal(context);
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance()
-                .getReference("Locales").child(nombreLocal).child("Productos");
+        boolean msg = false;
         try {
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    for (Producto productoMesa : productosFinalesMesa) {
-                        String codigo = productoMesa.getCodigo();
-                        if (snapshot.hasChild(codigo)) {
-                            DataSnapshot productoSnapshot = snapshot.child(codigo);
-                            int cantidadActual = productoSnapshot.child("cantidad").getValue(Integer.class);
-                            int nuevaCantidad = cantidadActual + productoMesa.getCantidad();
 
-                            databaseReference.child(codigo).child("cantidad").setValue(nuevaCantidad)
-                                    .addOnFailureListener(e ->
-                                            Toast.makeText(context, "Error al actualizar producto: " + productoMesa.getNombre(), Toast.LENGTH_SHORT).show()
-                                    );
+                for (Producto producto : productosFinalesMesa) {  //por cada producto de la lista que recibimos obtenemos los siguientes datos para poder obtenr la referencia en la bbdd
+                    String codigo = producto.getCodigo();
+                    String categoria = producto.getCategoria();
+                    int cantidadRestar = producto.getCantidad();
+
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombreLocal)
+                            .child("Productos").child(categoria).child(codigo).child("cantidad");
+
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            int cantidadinventario = snapshot.getValue(Integer.class);
+                            int nuevaCantidad = cantidadinventario - cantidadRestar;
+                            if (nuevaCantidad < 0) {
+                                databaseReference.setValue(0);
+                            } else {
+                                databaseReference.setValue(nuevaCantidad)
+                                        .addOnFailureListener(e -> {
+                                            boolean msg = true;
+                                            Log.e("Inventario", "Error al actualizar cantidad: " + e.getMessage());
+                                        });
+                            }
+
+
                         }
-                    }
-                    Toast.makeText(context, "Inventario actualizado correctamente", Toast.LENGTH_SHORT).show();
-                }
 
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    Toast.makeText(context, "Error al leer inventario", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.e("Inventario", "Error al leer inventario: " + error.getMessage());
+                        }
+                    });
                 }
-            });
+                if (msg) {
+                    Toast.makeText(context, "Ha ocurrido un error al actualizar el inventario", Toast.LENGTH_SHORT).show();
+                }
         } catch (Exception e) {
             Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 
 
 }

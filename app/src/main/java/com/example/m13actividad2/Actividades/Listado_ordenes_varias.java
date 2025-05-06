@@ -94,7 +94,7 @@ public class Listado_ordenes_varias extends AppCompatActivity {
         });
 
         Imprimir.setOnClickListener(view -> {
-            //ImpresionBt.Imprimir(this, lista, totalFormateado, mesaSeleccionada);
+            ImpresionBt.Imprimir(this, lista, totalFormateado, mesaSeleccionada);
         });
 
         ImprimirYcerrarMesa.setOnClickListener(view -> {
