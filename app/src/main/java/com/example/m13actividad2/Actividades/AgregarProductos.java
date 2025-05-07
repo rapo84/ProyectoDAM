@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.R;
@@ -32,6 +35,11 @@ public class AgregarProductos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_agregar_productos);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         codigo = findViewById(R.id.eTCod);
         nombre = findViewById(R.id.eTNom);
@@ -81,7 +89,7 @@ public class AgregarProductos extends AppCompatActivity {
                 pre = Double.parseDouble(precio.getText().toString());
                 can = Integer.parseInt(cantidad.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(AgregarProductos.this, "Error al convertir el precio o la cantidad", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AgregarProductos.this, "en precio y cantidad debe introducir valores numericos", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -93,6 +101,12 @@ public class AgregarProductos extends AppCompatActivity {
             ref.child(cat).child(cod).setValue(producto).addOnCompleteListener(Task ->{
                 if (Task.isSuccessful()){
                     Toast.makeText(AgregarProductos.this, "Producto agregado correctamente", Toast.LENGTH_SHORT).show();
+                    codigo.setText("");
+                    nombre.setText("");
+                    precio.setText("");
+                    cantidad.setText("");
+                    descripcion.setText("");
+                    categoria.setSelection(0);
                 }else{
                     Toast.makeText(AgregarProductos.this, "Error al agregar el producto", Toast.LENGTH_SHORT).show();
                 }

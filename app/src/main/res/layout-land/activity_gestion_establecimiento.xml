@@ -13,25 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#E7312A"
         android:text="Cerrar Sesion"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_telefono" />
 
     <TextView
         android:id="@+id/tv_mesas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="@color/material_dynamic_neutral40"
         android:text="MESAS"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
         app:layout_constraintTop_toBottomOf="@+id/tw_titulo_opcioneslocal" />
 
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_numero_mesas" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imgbt_opc_establecimiento_setImpresora"
         android:layout_width="56dp"
         android:layout_height="55dp"
         android:layout_marginTop="16dp"
@@ -161,13 +161,13 @@
         android:id="@+id/Titulo_pie_ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="@color/material_dynamic_neutral40"
         android:text="DATOS PARA EL PIE DEL TICEKT"
         android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintHorizontal_bias="0.396"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_titulo_opcioneslocal" />
 

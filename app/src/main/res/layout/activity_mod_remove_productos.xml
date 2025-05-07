@@ -13,11 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="88dp"
         android:text="MODIFICAR PRODUCTOS"
         android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
@@ -44,13 +45,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewModProductos"
-        android:layout_width="401dp"
-        android:layout_height="626dp"
+        android:layout_width="392dp"
+        android:layout_height="771dp"
         android:layout_marginTop="12dp"
         android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_selec_cat" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_select_Cat"
+        app:layout_constraintVertical_bias="0.36" />
 
     <ImageButton
         android:id="@+id/bt_modproduct_buscar"

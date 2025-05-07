@@ -11,67 +11,58 @@
     <TextView
         android:id="@+id/tv_titulo_modificarEliminar"
         android:layout_width="217dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="MODIFICAR PRODUCTOS"
         android:textColor="@color/white"
         android:textSize="18dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline22"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_select_Cat"
-        android:layout_width="253dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline22"
-        app:layout_constraintTop_toBottomOf="@+id/tv_selec_cat" />
+        android:layout_width="323dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_selec_cat"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_selec_cat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:text="Seleccionar Categoria"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/guideline22"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_modificarEliminar" />
+        app:layout_constraintStart_toEndOf="@+id/tv_titulo_modificarEliminar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewModProductos"
-        android:layout_width="443dp"
-        android:layout_height="379dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="879dp"
+        android:layout_height="344dp"
+        android:layout_marginTop="8dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline22"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_select_Cat" />
 
     <ImageButton
         android:id="@+id/bt_modproduct_buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:background="#8d8c86"
-        app:layout_constraintEnd_toStartOf="@+id/guideline22"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_select_Cat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toEndOf="@+id/spinner_select_Cat"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_search" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="263dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

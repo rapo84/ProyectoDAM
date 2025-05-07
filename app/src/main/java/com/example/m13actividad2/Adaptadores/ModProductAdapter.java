@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +38,7 @@ public class ModProductAdapter extends RecyclerView.Adapter<ModProductAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_producto_modificar, parent, false); // usa tu layout aquí
+        View view = LayoutInflater.from(context).inflate(R.layout.item_producto_modificar, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,11 +46,11 @@ public class ModProductAdapter extends RecyclerView.Adapter<ModProductAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Producto producto = productos.get(position);
 
-        holder.tvNombre.setText("Nombre: " +producto.getNombre());
-        holder.tvCategoria.setText("Categoria: "+producto.getCategoria());
-        holder.tvPrecio.setText(String.format("Precio: %.2f €", producto.getPrecio()));
-        holder.tvStock.setText(String.format("Stock: %d unidades", producto.getCantidad()));
-        holder.tvCodigo.setText("Codigo: " + producto.getCodigo());
+        holder.tvNombre.setText(Html.fromHtml("<b>NOMBRE:</b> " + producto.getNombre(), Html.FROM_HTML_MODE_LEGACY));
+        holder.tvCategoria.setText(Html.fromHtml("<b>CATEGORIA:</b>: "+producto.getCategoria(), Html.FROM_HTML_MODE_LEGACY));
+        holder.tvPrecio.setText(Html.fromHtml(String.format("<b>PRECIO:</b>: %.2f €", producto.getPrecio()), Html.FROM_HTML_MODE_LEGACY));
+        holder.tvStock.setText(Html.fromHtml(String.format("<b>STOCK:</b>: %d unidades", producto.getCantidad()), Html.FROM_HTML_MODE_LEGACY));
+        holder.tvCodigo.setText(Html.fromHtml("<b>CODIGO:</b>:: " + producto.getCodigo(), Html.FROM_HTML_MODE_LEGACY));
 
         // Aquí puedes poner los listeners para los botones
         holder.btnEliminar.setOnClickListener(v -> {

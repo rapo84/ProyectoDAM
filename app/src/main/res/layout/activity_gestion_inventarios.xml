@@ -11,20 +11,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintVertical_bias="0.351">
 
         <TextView
             android:id="@+id/Panel_inventario"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:textSize="18dp"
             android:text="GESTION DE INVENTARIOS"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
 
         <ImageView
@@ -36,9 +38,9 @@
 
         <Button
             android:id="@+id/bt_inventario_agregar"
-            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:backgroundTint="#F6655E"
             android:text="Agregar Producto" />
 
@@ -47,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:text="Registra un nuevo producto en el inventario de tu establecimiento"
             android:textAlignment="center"

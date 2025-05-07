@@ -40,13 +40,11 @@ public class GestionInventarios extends AppCompatActivity {
         ModificarProductos.setOnClickListener(view -> {
             Intent intent = new Intent(GestionInventarios.this,ModRemoveProductos.class);
             startActivity(intent);
-            finish();
         });
 
         AgregarProducto.setOnClickListener(view -> {
             Intent intent = new Intent(GestionInventarios.this,AgregarProductos.class);
             startActivity(intent);
-            finish();
         });
 
 
