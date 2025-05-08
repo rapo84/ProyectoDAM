@@ -56,7 +56,7 @@ public class EmpleadoActivity extends AppCompatActivity {
             ImageButton btnMesa = new ImageButton(this);
             btnMesa.setImageResource(R.drawable.mesapic);
             btnMesa.setScaleType(ImageButton.ScaleType.FIT_CENTER);
-            btnMesa.setBackgroundColor(Color.WHITE);
+            btnMesa.setBackgroundColor(Color.TRANSPARENT);
             LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     200

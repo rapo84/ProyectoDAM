@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,8 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
     private CategoriasAdapter adapter;
     private Lista_orden_adaptador adaptador_listas;
     private List<Producto> productosTemporales, lispapasable;
-    private String mesaSeleccionada = "Mesa06";  // ⚠️ cambiar por valor dinámico si es necesario
+    private int numMesa;
+    private String mesaSeleccionada;
 
     @Override
     public void onProductoSeleccionado(Producto producto) {
@@ -76,7 +78,16 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         categ = new ArrayList<>();
         productosTemporales = new ArrayList<>();
 
-        // mesaSeleccionada = "Mesa"+getIntent().getStringExtra("numeroMesa");  ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+        numMesa = getIntent().getIntExtra("numeroMesa", -1);
+        mesaSeleccionada = "Mesa"+numMesa;
+        if (numMesa == -1) {
+            //manejo de error si no se recibe el número de mesa desde PlanoMesas se muestra un toast y se cierra la actividad
+            Toast.makeText(this, "⚠️ Número de mesa no recibido", Toast.LENGTH_SHORT).show();
+            finish(); // opcional: cerrar si no se puede continuar sin el número
+            return;
+        }
+
+        mesaSeleccionada = "Mesa"+numMesa;
 
         numMesaActual.setText(mesaSeleccionada);
 
@@ -119,8 +130,8 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         });
 
         Salir.setOnClickListener(v -> {
-            //Intent intent = new Intent(InterfazMesas.this, ""actidad donde se muestran las mesas"".class);⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-            //startActivity(intent);⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+            Intent intent = new Intent(InterfazMesas.this, EmpleadoActivity.class);
+            startActivity(intent);
             finish();
         });
     }
