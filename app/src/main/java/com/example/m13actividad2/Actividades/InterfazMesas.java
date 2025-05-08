@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,8 @@ import java.util.List;
 
 public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnProductoSeleccionadoListener {
     private FrameLayout fragment1;
-    private ImageButton check, borrar, cambiar, opc;
+    private ImageButton check, Salir;
+    private TextView numMesaActual;
     private Button all_orders;
     private RecyclerView rv_categorias, rv_temporalOrders;
     private List<String> categ;
@@ -61,8 +63,8 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
 
         fragment1 = findViewById(R.id.contenedorFragmentProductos);
         check = findViewById(R.id.bt_mesas_Imprimir);
-        opc = findViewById(R.id.bt_mesas_opciones);
-        borrar = findViewById(R.id.bt_mesas_BorrarProducto);
+        numMesaActual = findViewById(R.id.tv_mesas_numero);
+        Salir = findViewById(R.id.bt_mesas_Salir);
         all_orders = findViewById(R.id.bt_mesas_all_Orders);
 
         rv_categorias = findViewById(R.id.rvCategorias);
@@ -74,7 +76,9 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
         categ = new ArrayList<>();
         productosTemporales = new ArrayList<>();
 
-        // mesaSeleccionada = "Mesa"+getIntent().getStringExtra("numeroMesa");
+        // mesaSeleccionada = "Mesa"+getIntent().getStringExtra("numeroMesa");  ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+        numMesaActual.setText(mesaSeleccionada);
 
         adapter = new CategoriasAdapter(categ, categoria -> {
             Log.d("CategoriaSeleccionada", "Categoría seleccionada: " + categoria);
@@ -112,6 +116,12 @@ public class InterfazMesas extends AppCompatActivity implements ItemFragment.OnP
             Intent intent = new Intent(InterfazMesas.this, Listado_ordenes_varias.class);
             intent.putExtra("numeroMesa", mesaSeleccionada);
             startActivity(intent);
+        });
+
+        Salir.setOnClickListener(v -> {
+            //Intent intent = new Intent(InterfazMesas.this, ""actidad donde se muestran las mesas"".class);⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+            //startActivity(intent);⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+            finish();
         });
     }
 }
