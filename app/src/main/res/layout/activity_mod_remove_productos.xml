@@ -3,25 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    tools:context=".Actividades.ListarProductos">
+    tools:context=".Actividades.ModificarProductos">
 
     <TextView
-        android:id="@+id/tv_titulo_ListarProductos"
+        android:id="@+id/tv_titulo_modificarEliminar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="LISTAR PRODUCTOS"
+        android:text="MODIFICAR PRODUCTOS"
         android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinner_select_Cat"
+        android:layout_width="241dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_selec_cat"
+        app:layout_constraintStart_toEndOf="@+id/tv_selec_cat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_modificarEliminar"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
-        android:id="@+id/tv_selecion_cat_list"
+        android:id="@+id/tv_selec_cat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,33 +41,10 @@
         android:text="Categoria"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos" />
-
-    <Spinner
-        android:id="@+id/spinner_seleccion_Cat_list"
-        android:layout_width="241dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintStart_toEndOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/bt_ListarProd_buscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:background="#8d8c86"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner_seleccion_Cat_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_modificarEliminar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rVListarProductos"
+        android:id="@+id/recyclerViewModProductos"
         android:layout_width="392dp"
         android:layout_height="771dp"
         android:layout_marginTop="12dp"
@@ -64,6 +53,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_selecion_cat_list"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_select_Cat"
         app:layout_constraintVertical_bias="0.36" />
+
+    <ImageButton
+        android:id="@+id/bt_modproduct_buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:background="#8d8c86"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner_select_Cat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_modificarEliminar"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,12 @@
             android:name=".Actividades.InterfazMesas"
             android:exported="false" />
         <activity
+            android:name=".Actividades.ModRemoveProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Actividades.ModificarProductos"
+            android:exported="false" />
+        <activity
             android:name=".Actividades.ListarProductos"
             android:exported="false" />
         <activity
@@ -62,6 +68,9 @@
             android:name=".Actividades.AdminActivityListar"
             android:exported="false" />
         <activity
+            android:name=".Actividades.AgregarProductos"
+            android:exported="false" />
+        <activity
             android:name=".Actividades.Ventana_Inicial"
             android:exported="true">
             <intent-filter>
@@ -70,6 +79,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

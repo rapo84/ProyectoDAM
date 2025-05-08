@@ -44,6 +44,10 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
+
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -53,4 +57,6 @@ dependencies {
     implementation("com.google.firebase:firebase-database")                   // se agrego para poder usar el firebase database realtime
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
 }

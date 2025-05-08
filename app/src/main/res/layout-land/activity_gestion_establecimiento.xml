@@ -10,7 +10,6 @@
         android:id="@+id/bt_GE_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#E7312A"
         android:text="Cerrar Sesion"
@@ -23,13 +22,13 @@
         android:id="@+id/tv_mesas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="@color/material_dynamic_neutral40"
         android:text="MESAS"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
         app:layout_constraintTop_toBottomOf="@+id/tw_titulo_opcioneslocal" />
 
@@ -159,13 +158,13 @@
         android:id="@+id/Titulo_pie_ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:background="@color/material_dynamic_neutral40"
         android:text="DATOS PARA EL PIE DEL TICEKT"
         android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_titulo_opcioneslocal" />
 
@@ -178,6 +177,20 @@
         android:text="CORREO"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo_pie_ticket" />
+
+    <EditText
+        android:id="@+id/et_opc_establecimiento_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Correo electronico"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/material_dynamic_neutral40"
+        app:layout_constraintStart_toEndOf="@+id/tv_opc_establecimiento_mail"
         app:layout_constraintTop_toBottomOf="@+id/Titulo_pie_ticket" />
 
     <ImageButton
@@ -203,20 +216,6 @@
         app:layout_constraintStart_toEndOf="@+id/et_opc_establecimiento_telefono"
         app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_mail"
         app:srcCompat="@android:drawable/ic_menu_save" />
-
-    <EditText
-        android:id="@+id/et_opc_establecimiento_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:hint="Correo electronico"
-        android:inputType="text"
-        android:textColor="@color/white"
-        android:textColorHint="@color/material_dynamic_neutral40"
-        app:layout_constraintStart_toEndOf="@+id/tv_opc_establecimiento_mail"
-        app:layout_constraintTop_toBottomOf="@+id/Titulo_pie_ticket" />
 
     <TextView
         android:id="@+id/tv_iva"
@@ -255,6 +254,5 @@
         app:layout_constraintStart_toEndOf="@+id/et_porcentaje_iva"
         app:layout_constraintTop_toBottomOf="@+id/et_opc_establecimiento_telefono"
         app:srcCompat="@android:drawable/ic_menu_save" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

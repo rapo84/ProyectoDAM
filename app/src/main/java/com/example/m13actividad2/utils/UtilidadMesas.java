@@ -30,63 +30,59 @@ import java.util.Map;
 public class UtilidadMesas {
 
     public static void obtenercategorias(Context context, List<String> lista, RecyclerView.Adapter adapter) {
-        String nombrelocal = Utilidad.recupernombrelocal(context);           //Obtenemos el nombre del local a donde pertenece el dispositivo
+        String nombrelocal = Utilidad.recupernombrelocal(context);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Productos");  // obtenemos la referencia a la bbdd
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Productos");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                lista.clear();                                                                      // Limpiamos la lista antes de agregar nuevos datos
+                lista.clear();
                 for (DataSnapshot categoriaSnapshot : snapshot.getChildren()) {
-                    String nombreCategoria = categoriaSnapshot.getKey(); // obtiene "las categorias existentes"
+                    String nombreCategoria = categoriaSnapshot.getKey();
                     lista.add(nombreCategoria);
                 }
                 adapter.notifyDataSetChanged();
-                // Ahora puedes usar la lista `categorias` para cargar tu RecyclerView, etc.                                                    // Notificar al RecyclerView que los datos han cambiado y que debe volver a cargar
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("FirebaseError", "❌ Error al leer datos", databaseError.toException());     // NO borrar, ofrece informacion
+                Log.e("FirebaseError", "❌ Error al leer datos", databaseError.toException());
             }
         });
     }
 
     public static void cargarProductosPorCategoria(Context context, List<Producto> productos, RecyclerView.Adapter adapter, String categoriaSeleccionada) {
-        String nombrelocal = Utilidad.recupernombrelocal(context);           //Obtenemos el nombre del local a donde pertenece el dispositivo
+        String nombrelocal = Utilidad.recupernombrelocal(context);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Productos").child(categoriaSeleccionada);  // obtenemos la referencia a la bbdd
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombrelocal).child("Productos").child(categoriaSeleccionada);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                productos.clear();                                                                      // Limpiamos la lista antes de agregar nuevos datos
+                productos.clear();
                 for (DataSnapshot categoriaSnapshot : snapshot.getChildren()) {
                     String nombre = categoriaSnapshot.child("nombre").getValue(String.class);
                     String categoria = categoriaSnapshot.child("categoria").getValue(String.class);
                     String codigo = categoriaSnapshot.child("codigo").getValue(String.class);
                     Integer cantidad = categoriaSnapshot.child("cantidad").getValue(Integer.class);
                     if (cantidad == null) {
-                        cantidad = 0; // en caso de ser null queda a 0 por defecto(no deberia porque cuando se pide el dato en la app se verifica pero no esta demas)
+                        cantidad = 0;
                     }
-                    // Obtener el precio como Double
                     Double precio = categoriaSnapshot.child("precio").getValue(Double.class);
                     if (precio == null) {
-                        precio = 0.0; // // en caso de ser null queda a 0 por defecto(no deberia porque cuando se pide el dato en la app se verifica pero no esta demas)
+                        precio = 0.0;
                     }
-
 
                     productos.add(new Producto(codigo, nombre, precio, categoria, cantidad));
                     Log.d("Producto", "✅ nombre: " + nombre + ", categoria: " + categoria + ", codigo: " + codigo);
-
                 }
-                adapter.notifyDataSetChanged();                                                     // Notificar al RecyclerView que los datos han cambiado y que debe volver a cargar
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("FirebaseError", "❌ Error al leer datos", databaseError.toException());     // NO borrar, ofrece informacion
+                Log.e("FirebaseError", "❌ Error al leer datos", databaseError.toException());
             }
         });
     }
@@ -118,7 +114,6 @@ public class UtilidadMesas {
                     productos.add(new Producto(codigo, nombre, precio, categoria, cantidad));
                 }
 
-                // Llamar al callback
                 if (listener != null) {
                     listener.callbackProductosCargados(productos);
                 }
@@ -128,7 +123,7 @@ public class UtilidadMesas {
             public void onCancelled(DatabaseError databaseError) {
                 Log.e("FirebaseError", "❌ Error al leer datos", databaseError.toException());
                 if (listener != null) {
-                    listener.callbackProductosCargados(new ArrayList<>()); // Retornar lista vacía en caso de error
+                    listener.callbackProductosCargados(new ArrayList<>());
                 }
             }
         });
@@ -143,8 +138,7 @@ public class UtilidadMesas {
                 .child("Mesas")
                 .child(mesaSeleccionada);
 
-        cargarHistorialdeProductosDeMesas(context, mesaSeleccionada, productosExistentes -> { //aqui usamos el callback pero en lambda para simplificar lo cual lo que hacemos es colocar loq ue devolveria el callback en una variable
-            // Mapeamos los productos existentes por su código para fácil acceso
+        cargarHistorialdeProductosDeMesas(context, mesaSeleccionada, productosExistentes -> {
             Map<String, Producto> mapaExistente = new HashMap<>();
             for (Producto producto : productosExistentes) {
                 if (producto.getCodigo() != null) {
@@ -152,50 +146,39 @@ public class UtilidadMesas {
                 }
             }
 
-            // Recorremos los nuevos productos para sumarlos o agregarlos
             for (Producto nuevo : productosNuevos) {
                 if (nuevo.getCodigo() == null) continue;
 
                 Producto existente = mapaExistente.get(nuevo.getCodigo());
 
                 if (existente != null) {
-                    // Ya existe -> sumamos cantidades
                     int nuevaCantidad = existente.getCantidad() + nuevo.getCantidad();
                     nuevo.setCantidad(nuevaCantidad);
                 }
 
-                // Guardamos (si no existía lo crea, si ya existía lo sobrescribe con la cantidad sumada)
                 databaseReference.child(nuevo.getCodigo()).setValue(nuevo);
             }
         });
     }
 
     public static void mostrarDialogoConfirmacionLiberarmesa(String mensaje, Context context, String mesaseleccionada, List<Producto> lista, Double totalFormateado) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context); // es el contexto de la actividad
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("⚠️⚠️ ATENCION ⚠️⚠️");
         builder.setMessage(mensaje)
-                .setCancelable(false) // El diálogo no se puede cancelar tocando fuera de él
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // Aquí puedes realizar la acción que quieres que ocurra al aceptar
-
-                        LiberarMesa(context,mesaseleccionada,lista,totalFormateado);
-                    }
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", (dialog, id) -> {
+                    LiberarMesa(context, mesaseleccionada, lista, totalFormateado);
                 })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss(); // Cierra el diálogo si se selecciona "Cancelar"
-                    }
+                .setNegativeButton("Cancelar", (dialog, id) -> {
+                    dialog.dismiss();
                 });
 
         AlertDialog alert = builder.create();
-        alert.show(); // Muestra el diálogo
+        alert.show();
     }
 
-    // metodo para borrar la mesa seleccionada
     public static void LiberarMesa(Context context, String mesaseleccionada, List<Producto> lista, Double totalFormateado) {
         String nombrelocal = Utilidad.recupernombrelocal(context);
-        // Obtenemos la referencia al producto
         DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                 .getReference("Locales").child(nombrelocal).child("Mesas");
 
@@ -210,82 +193,63 @@ public class UtilidadMesas {
                         if (context instanceof Activity) {
                             ((Activity) context).finish();
                         }
-
                     }).addOnFailureListener(e -> {
                         Toast.makeText(context, "Error al intentar liberar la mesa", Toast.LENGTH_SHORT).show();
                     });
-
-
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context); // es el contexto de la actividad
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("PERMISOS INSUFICIENTES");
                     builder.setMessage("Solo el administrador puede liberar las mesas")
-                            .setCancelable(false) // El diálogo no se puede cancelar tocando fuera de él
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.dismiss(); // Cierra el diálogo si se selecciona "Cancelar"
-                                }
-                            });
-
-                    AlertDialog alert = builder.create();
-                    alert.show(); // Muestra el diálogo
+                            .setCancelable(false)
+                            .setPositiveButton("Aceptar", (dialog, id) -> dialog.dismiss());
+                    builder.create().show();
                 }
             }
 
-            /*  este metodo solo existe porque quise usar una sola interfaz para las 2 respuestas que necesitaba del rolecheckcallback
-                pero en este metodo aqui no pinta nada! pero por la interfaz debo implementarlo obligatoriamente*/
             @Override
-            public void onRoleReceived(String role, String localex) {
-            }
+            public void onRoleReceived(String role, String localex) {}
         });
     }
-    
 
     public static void actualizarInventario(Context context, List<Producto> productosFinalesMesa) {
         String nombreLocal = Utilidad.recupernombrelocal(context);
         boolean msg = false;
         try {
+            for (Producto producto : productosFinalesMesa) {
+                String codigo = producto.getCodigo();
+                String categoria = producto.getCategoria();
+                int cantidadRestar = producto.getCantidad();
 
-                for (Producto producto : productosFinalesMesa) {  //por cada producto de la lista que recibimos obtenemos los siguientes datos para poder obtenr la referencia en la bbdd
-                    String codigo = producto.getCodigo();
-                    String categoria = producto.getCategoria();
-                    int cantidadRestar = producto.getCantidad();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombreLocal)
+                        .child("Productos").child(categoria).child(codigo).child("cantidad");
 
-
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Locales").child(nombreLocal)
-                            .child("Productos").child(categoria).child(codigo).child("cantidad");
-
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            int cantidadinventario = snapshot.getValue(Integer.class);
-                            int nuevaCantidad = cantidadinventario - cantidadRestar;
-                            if (nuevaCantidad < 0) {
-                                databaseReference.setValue(0);
-                            } else {
-                                databaseReference.setValue(nuevaCantidad)
-                                        .addOnFailureListener(e -> {
-                                            boolean msg = true;
-                                            Log.e("Inventario", "Error al actualizar cantidad: " + e.getMessage());
-                                        });
-                            }
-
-
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        int cantidadinventario = snapshot.getValue(Integer.class);
+                        int nuevaCantidad = cantidadinventario - cantidadRestar;
+                        if (nuevaCantidad < 0) {
+                            databaseReference.setValue(0);
+                        } else {
+                            databaseReference.setValue(nuevaCantidad)
+                                    .addOnFailureListener(e -> {
+                                        Log.e("Inventario", "Error al actualizar cantidad: " + e.getMessage());
+                                    });
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Log.e("Inventario", "Error al leer inventario: " + error.getMessage());
-                        }
-                    });
-                }
-                if (msg) {
-                    Toast.makeText(context, "Ha ocurrido un error al actualizar el inventario", Toast.LENGTH_SHORT).show();
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("Inventario", "Error al leer inventario: " + error.getMessage());
+                    }
+                });
+            }
+            if (msg) {
+                Toast.makeText(context, "Ha ocurrido un error al actualizar el inventario", Toast.LENGTH_SHORT).show();
+            }
         } catch (Exception e) {
             Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 }

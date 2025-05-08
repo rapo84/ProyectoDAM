@@ -1,5 +1,6 @@
 package com.example.m13actividad2.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -30,6 +31,23 @@ public class GestionInventarios extends AppCompatActivity {
         AgregarProducto = findViewById(R.id.bt_inventario_agregar);
         ListarProductos = findViewById(R.id.bt_inventario_listar);
         ModificarProductos = findViewById(R.id.bt_inventario_modificar);
+
+        ListarProductos.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionInventarios.this, ListarProductos.class);
+            startActivity(intent);
+        });
+
+        ModificarProductos.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionInventarios.this,ModRemoveProductos.class);
+            startActivity(intent);
+        });
+
+        AgregarProducto.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionInventarios.this,AgregarProductos.class);
+            startActivity(intent);
+        });
+
+
 
 
     }

@@ -10,13 +10,14 @@
 
     <TextView
         android:id="@+id/tv_titulo_ListarProductos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:text="LISTAR PRODUCTOS"
         android:textColor="@color/white"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,42 +29,38 @@
         android:layout_marginTop="28dp"
         android:text="Categoria"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos" />
+        app:layout_constraintStart_toEndOf="@+id/tv_titulo_ListarProductos"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_seleccion_Cat_list"
-        android:layout_width="241dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_selecion_cat_list"
+        android:layout_width="413dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/bt_ListarProd_buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
         android:background="#8d8c86"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toEndOf="@+id/spinner_seleccion_Cat_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rVListarProductos"
-        android:layout_width="392dp"
-        android:layout_height="771dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="863dp"
+        android:layout_height="330dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_seleccion_Cat_list" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

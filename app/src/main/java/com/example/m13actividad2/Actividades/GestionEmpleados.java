@@ -33,21 +33,18 @@ public class GestionEmpleados extends AppCompatActivity {
         agregarEmpleado.setOnClickListener(view -> {
             Intent intent = new Intent(GestionEmpleados.this, AdminActivityRegistrar.class);
             startActivity(intent);
-            finish();
 
         });
 
         listarEmpleados.setOnClickListener(view -> {
             Intent intent = new Intent( GestionEmpleados.this, AdminActivityListar.class);
             startActivity(intent);
-            finish();
 
         });
 
         eliminarEmpleados.setOnClickListener(view -> {
             Intent intent = new Intent(GestionEmpleados.this, AdminActivityEliminar.class);
             startActivity(intent);
-            finish();
 
         });
 

@@ -37,8 +37,8 @@
 
     <Button
         android:id="@+id/bt_inventario_agregar"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="292dp"
+        android:layout_height="47dp"
         android:layout_marginTop="44dp"
         android:backgroundTint="#F6655E"
         android:text="Agregar Producto"
@@ -60,19 +60,20 @@
 
     <Button
         android:id="@+id/bt_inventario_modificar"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="295dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#F6655E"
         android:text="Modificar Producto"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toBottomOf="@+id/msg_listar_producto" />
 
     <TextView
         android:id="@+id/msg_modificar_producto"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="272dp"
+        android:layout_height="46dp"
         android:layout_marginTop="5dp"
         android:text="Aqui podras modificar la informacion de los productos tu inventario"
         android:textAlignment="center"
@@ -83,12 +84,13 @@
 
     <Button
         android:id="@+id/bt_inventario_listar"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="293dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#F6655E"
         android:text="Listar productos"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toBottomOf="@+id/msg_agregar_producto" />
 
