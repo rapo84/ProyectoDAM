@@ -26,22 +26,31 @@ El desarrollo de la aplicación se realizará en **varias etapas**, incorporando
 - **Conexión con la Base de Datos**:  
   - Uso de **Firebase Realtime Database** para almacenar y recuperar la información de los empleados.  
 
-- **Servidor Local con Node.js**:  
-  - Servidor creado con Node.js para la gestión de usuarios en Firebase Auth.  
+- **Servidor remoto con Firebase Functions**:  
+  - Servidor en Firebase Functions para la gestión de usuarios en Firebase Auth.  
 
 ---
 
-### 🔄 Próximas Etapas de Desarrollo  
+### ✅ Segunda Etapa: Gestión de Inventarios  
 
 🔹 **Gestión de Inventario**:  
 - Registro y control de productos disponibles en el local.  
-- Modificación y eliminación de productos.  
+- Modificación y eliminación de productos.
+- actualizacion de productos segun la actividad y consumo del establecimiento
+
+### ✅ Tercera Etapa: Control y Manejo de las ordenes en mesas
 
 🔹 **Gestión de Mesas y Pedidos**:  
 - Asignación de mesas y estado de ocupación.  
-- Registro de pedidos y seguimiento de su estado.  
+- Registro de pedidos y seguimiento de su estado.
+- Actualizacion de inventarios al el servicio de una mesa  
 
-Estas funciones serán implementadas en futuras actualizaciones de la app.  
+### ✅ Cuarta Etapa: Impresion de tickets
+
+🔹 **Impresion de tickets**:  
+- Configuracion de sistema de enlace con la impresora  
+- Aplicacion del formato para la impresion del ticket
+- logica para imprimir la informacion deseada  
 
 ---
 
@@ -49,13 +58,14 @@ Estas funciones serán implementadas en futuras actualizaciones de la app.
 - **Android Studio (Java)**  
 - **Firebase Realtime Database** (Almacenamiento de datos)  
 - **Firebase Authentication** (Autenticación de usuarios)  
-- **Node.js** (Servidor local)  
-- **Firebase Admin SDK** (Gestión de usuarios y permisos)  
+- ~~**Node.js** (Servidor local)~~ **obsoleto**
+- **Firebase Admin SDK** (Gestión de usuarios y permisos)
+- **Firebase Functions** (servidor en la nube)
 
 ---
 
 ## 📢 Actualizaciones
-Este archivo README.md se actualizará conforme avance el desarrollo del proyecto, incorporando detalles sobre nuevas funcionalidades implementadas.
+Actualmente la app esta en etapa de testing
 
 ## 👥 Colaboradores  
 
@@ -63,12 +73,10 @@ Este archivo README.md se actualizará conforme avance el desarrollo del proyect
 - [Jessica](https://github.com/enlace-de-jessica)
 
 ## 📖 Instrucciones de Uso 
-Para que la app funcione se debe descargar tambien el repositorio con el servidor local 
+- en estapas iniciales de la app funcionabamos con un servidor local pero con el desarrollo de la app terminamos migrando a un servidor en la nube
+- de igual manera dejamos en repositorio del antiguo servidor por motivos academicos
 [Servidor Local](https://github.com/rapo84/ServerFirebaseSDK)
 
 ## ⚠️ IMPORTANTE ⚠️
-  - Este proyecto solo funcion con el servidor en ejecucion en local
-  - tanto al servidor como al proyecto de android studio le faltan los archivos con los token de seguridad, lo cuales no se han subido por razones obvias
-
-
-
+  - Antiguamente usabamos un servidor local para la gestion de la app, en la actualidad usamos servicios en la nube para esta funcion, especificamente Firebase Functions
+  - tanto al servidor local como al proyecto de android studio le faltan los archivos con los token de seguridad, lo cuales no se han subido por razones obvias
