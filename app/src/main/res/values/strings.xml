@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">M13Actividad2</string>
+    <string name="app_name">GesCom</string>
     <string name="first_fragment_label">Primer Fragmento</string>
     <string name="second_fragment_label">Segundo Fragmento</string>
 

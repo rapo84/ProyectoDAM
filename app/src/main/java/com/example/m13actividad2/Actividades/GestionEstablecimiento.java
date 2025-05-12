@@ -16,6 +16,7 @@ import com.example.m13actividad2.ConextionsPrint.ImpresionBt;
 import com.example.m13actividad2.R;
 import com.example.m13actividad2.interfaces.SelecconImpresoraCallBack;
 import com.example.m13actividad2.utils.Utilidad;
+import com.example.m13actividad2.utils.UtilidadMesas;
 
 public class GestionEstablecimiento extends AppCompatActivity {
     private ImageButton GuardarNumMesas, EnlazarPrint, GuardarCorreo, GuardarTelefono, GuardarIva;
@@ -59,18 +60,15 @@ public class GestionEstablecimiento extends AppCompatActivity {
             }
             try {
                 NumeroDeMesas = Integer.parseInt(entrada);
+                if (NumeroDeMesas>0){
+                    UtilidadMesas.GuardarDatosPieDeTicket(this,"NumeroDeMesas",String.valueOf(NumeroDeMesas));
+                }else {
+                    Toast.makeText(this, "El numero de mesas no puede ser menos a 0", Toast.LENGTH_SHORT).show();
+                }
             } catch (NumberFormatException e) {
                 // Manejar el error: puedes mostrar un mensaje o asignar un valor predeterminado
                 Toast.makeText(this, "Ingrese un número válido", Toast.LENGTH_SHORT).show();
-                return;
             }
-
-            if (NumeroDeMesas>0){
-                Utilidad.guardarnumMEsas(this,NumeroDeMesas);
-            }else {
-                Toast.makeText(this, "El numero de mesas no puede ser menos a 0", Toast.LENGTH_SHORT).show();
-            }
-
 
         });
 
@@ -89,7 +87,7 @@ public class GestionEstablecimiento extends AppCompatActivity {
             if (Correo.isEmpty()){
                 Toast.makeText(this, "Ingrese un correo", Toast.LENGTH_SHORT).show();
             }else {
-                Utilidad.guardarDatoLocalmente(this,Correo,"Correo");
+                UtilidadMesas.GuardarDatosPieDeTicket(this,"Correo",Correo);
             }
         });
 
@@ -98,23 +96,27 @@ public class GestionEstablecimiento extends AppCompatActivity {
             if (Telefono.isEmpty()){
                 Toast.makeText(this, "Ingrese un telefono", Toast.LENGTH_SHORT).show();
             }else {
-                Utilidad.guardarDatoLocalmente(this,Telefono,"Telefono");
+                UtilidadMesas.GuardarDatosPieDeTicket(this,"Telefono",Telefono);
 
             }
         });
 
         GuardarIva.setOnClickListener(view -> {
+            if (etPorcentajeIva.getText().toString().trim().isEmpty()){
+                Toast.makeText(this, "Ingrese un porcentaje de iva", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             try {
                 Double Iva = Double.parseDouble(etPorcentajeIva.getText().toString().trim());
                 if (Iva>0){
-                    Utilidad.guardarDatoLocalmente(this,Iva.toString(),"Iva");
+                    UtilidadMesas.GuardarDatosPieDeTicket(this,"Iva",Iva.toString());
                 }else {
                     Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show();
                 }
             }catch (NumberFormatException e){
                 Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show();
             }
-
 
         });
 

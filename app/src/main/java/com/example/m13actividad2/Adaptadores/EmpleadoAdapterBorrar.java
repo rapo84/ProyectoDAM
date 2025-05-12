@@ -130,7 +130,8 @@ public class EmpleadoAdapterBorrar extends RecyclerView.Adapter<EmpleadoAdapterB
         databaseReference.removeValue().addOnSuccessListener(aVoid -> {     // aqui creamos un listener que cuando se borre el emmpleado de la bbdd nos permita ahora proceder a borrarlo de la lista del adaptador
             // y aqui eliminamos el elemento de la lista y notificamos al adaptador
             empleados.remove(position);
-            notifyItemRemoved(position);        // notifica al adaptador que hay cambios
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, empleados.size()); // notifica al adaptador que hay cambios
             Toast.makeText(context, "Empleado eliminado", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
             Toast.makeText(context, "Error al eliminar empleado", Toast.LENGTH_SHORT).show();

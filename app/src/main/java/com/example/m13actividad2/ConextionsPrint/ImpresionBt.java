@@ -13,7 +13,9 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.interfaces.SelecconImpresoraCallBack;
+import com.example.m13actividad2.interfaces.Ticketscallback;
 import com.example.m13actividad2.utils.Utilidad;
+import com.example.m13actividad2.utils.UtilidadMesas;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -83,65 +85,47 @@ public class ImpresionBt {
     }
 
     public static void Imprimir(Context context, List<Producto> productos, Double totalSinIVA, String mesaseleccionada) {
-        String nombreLocal = "", correo = "", telefono = "", impresora = "", porcentajeIVA = "";
-        Double ivaDouble = 0.0;
-        // Recuperar impresora
-        impresora = Utilidad.recuperDatoslocal(context, "Impresora");
-        if (impresora.isEmpty()) {
-            Toast.makeText(context, "No hay impresora guardada", Toast.LENGTH_SHORT).show();
-        }
+        String nombreLocal = Utilidad.recupernombrelocal(context);
+        String impresora = Utilidad.recuperDatoslocal(context, "Impresora");
 
-        // Recuperar nombre del local
-        nombreLocal = Utilidad.recupernombrelocal(context);
-        if (nombreLocal.isEmpty()) {
-            Toast.makeText(context, "No hay local guardado", Toast.LENGTH_SHORT).show();
-        }
-        // Recuperar teléfono
-        telefono = Utilidad.recuperDatoslocal(context, "Telefono");
-        if (telefono.isEmpty()) {
-            Toast.makeText(context, "No hay telefono guardado", Toast.LENGTH_SHORT).show();
-        }
-        // Recuperar correo
-        correo = Utilidad.recuperDatoslocal(context, "Correo");
-        if (correo.isEmpty()) {
-            Toast.makeText(context, "No hay correo guardado", Toast.LENGTH_SHORT).show();
-        }
-        //Recuperar porcentaje IVA
-        porcentajeIVA = Utilidad.recuperDatoslocal(context, "Iva");
-        if (porcentajeIVA.isEmpty()) {
-            Toast.makeText(context, "No hay porcentaje de IVA guardado", Toast.LENGTH_SHORT).show();
-        }else{
-            ivaDouble = Double.parseDouble(porcentajeIVA);
-        }
-
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        if (bluetoothAdapter == null) {
-            Toast.makeText(context, "Este dispositivo no tiene Bluetooth", Toast.LENGTH_SHORT).show();
+        if (nombreLocal.isEmpty() || impresora.isEmpty()) {
+            Toast.makeText(context, "Falta nombre del local o impresora", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!bluetoothAdapter.isEnabled()) {
-            Toast.makeText(context, "Bluetooth no está habilitado", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        UtilidadMesas.obtenerDatosDelTicket(context, (telefono, correo, ivaStr, numeroMesas) -> {
+            double ivaDouble = 0.0;
+            try {
+                ivaDouble = Double.parseDouble(ivaStr);
+            } catch (NumberFormatException e) {
+                Toast.makeText(context, "IVA inválido", Toast.LENGTH_SHORT).show();
+            }
 
-        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) !=
-                android.content.pm.PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context, "Permiso BLUETOOTH_CONNECT no concedido", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        Set<BluetoothDevice> DispositivosConectados = bluetoothAdapter.getBondedDevices();
-        for (BluetoothDevice device : DispositivosConectados) {
-            if (device.getName().equals(impresora)) {
-                connectAndPrint(context, device,nombreLocal, productos, totalSinIVA, ivaDouble, telefono, correo, mesaseleccionada);
+            if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
+                Toast.makeText(context, "Bluetooth no disponible o no activado", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
 
-        Toast.makeText(context, "Impresora no encontrada: " + impresora, Toast.LENGTH_SHORT).show();
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, "Permiso BLUETOOTH_CONNECT no concedido", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Set<BluetoothDevice> dispositivos = bluetoothAdapter.getBondedDevices();
+            for (BluetoothDevice device : dispositivos) {
+                if (device.getName().equals(impresora)) {
+                    connectAndPrint(context, device, nombreLocal, productos, totalSinIVA, ivaDouble, telefono, correo, mesaseleccionada);
+                    return;
+                }
+            }
+
+            Toast.makeText(context, "Impresora no encontrada: " + impresora, Toast.LENGTH_SHORT).show();
+        });
     }
+
 
     private static void connectAndPrint(Context context, BluetoothDevice device, String nombreLocal, List<Producto> productos, double totalSinIVA, double porcentajeIVA, String telefono, String correo, String mesaseleccionada) {
         BluetoothSocket socket = null;

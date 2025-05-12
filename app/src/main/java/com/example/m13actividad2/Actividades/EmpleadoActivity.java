@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.m13actividad2.R;
 import com.example.m13actividad2.utils.Utilidad;
+import com.example.m13actividad2.utils.UtilidadMesas;
 
 public class EmpleadoActivity extends AppCompatActivity {
     GridLayout gridLayoutMesas;
@@ -36,8 +37,11 @@ public class EmpleadoActivity extends AppCompatActivity {
 
         gridLayoutMesas = findViewById(R.id.gridLayoutMesas);
 
-        int numMesas = Utilidad.recupernumMesas(this);
-        crearBotonesDeMesa(numMesas);
+        UtilidadMesas.obtenerDatosDelTicket(this, (telefono, correo, ivaStr, numMesas) -> {  //usamos el callback general nos regresa el numero de mesas y otros valores pero solo usams el numero de mesas
+            int numMesasInt = Integer.parseInt(numMesas);
+            crearBotonesDeMesa(numMesasInt);
+
+        });
     }
 
     private void crearBotonesDeMesa(int cantidad) {

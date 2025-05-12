@@ -125,6 +125,7 @@ public class ModProductAdapter extends RecyclerView.Adapter<ModProductAdapter.Vi
             // y aqui eliminamos el elemento de la lista y notificamos al adaptador
             productos.remove(position);
             notifyItemRemoved(position);        // notifica al adaptador que hay cambios
+            notifyItemRangeChanged(position, productos.size());
             Toast.makeText(context, "Producto eliminado", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
             Toast.makeText(context, "Error al eliminar el Producto", Toast.LENGTH_SHORT).show();

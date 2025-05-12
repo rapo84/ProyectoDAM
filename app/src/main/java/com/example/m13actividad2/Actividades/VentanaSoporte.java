@@ -65,7 +65,7 @@ public class VentanaSoporte extends AppCompatActivity {
             Utilidad.ObtenerLocalesExistentes(new LocalesCallback() {
                 @Override
                 public void onCallback(ArrayList<String> listalocalesexistentes) {
-                    // 📌 Ahora `VerificarExistlocal()` recibe la lista llena porque espera a que la consulta a firebase se complete antes de trabjar con una lista vacia
+                    //`VerificarExistlocal()` ahora si recibe la lista llena porque espera a que la consulta a firebase se complete antes de trabjar con una lista vacia gracias al callback
                     if(!nombrelocal.trim().isEmpty()){
                         Utilidad.VerificarExistlocal(Addlocal.getContext(), nombrelocal, listalocalesexistentes);
                     }else{
@@ -79,6 +79,7 @@ public class VentanaSoporte extends AppCompatActivity {
         enlazar.setOnClickListener(view -> {
             nombrelocal= localname.getText().toString().trim();
             Utilidad.guardarNombrenegocioLocalmente(this, nombrelocal);
+            Toast.makeText(this, "Local enlazado correctamente", Toast.LENGTH_SHORT).show();
         });
 
         Addadmin.setOnClickListener(view -> {

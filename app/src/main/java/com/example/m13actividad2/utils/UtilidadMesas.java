@@ -16,6 +16,7 @@ import com.example.m13actividad2.Modelos.Persona;
 import com.example.m13actividad2.Modelos.Producto;
 import com.example.m13actividad2.interfaces.ProductosCargadosListener;
 import com.example.m13actividad2.interfaces.RoleCheckCallback;
+import com.example.m13actividad2.interfaces.Ticketscallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -251,5 +252,57 @@ public class UtilidadMesas {
             Toast.makeText(context, "Error al actualizar inventario", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public static void GuardarDatosPieDeTicket(Context context, String elemento, String valorElemento) {
+        String nombrelocal = Utilidad.recupernombrelocal(context);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                .getReference("Locales")
+                .child(nombrelocal)
+                .child("PieDeTicket")
+                .child(elemento);
+
+        databaseReference.setValue(valorElemento).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(context, "Dato guardado correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Error al guardar datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public static void obtenerDatosDelTicket(Context context, Ticketscallback callback) {
+        String nombreLocal = Utilidad.recupernombrelocal(context);
+        if (nombreLocal.isEmpty()) {
+            Toast.makeText(context, "No hay local guardado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Locales").child(nombreLocal).child("PieDeTicket");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String telefono = snapshot.child("Telefono").getValue(String.class);
+                String correo = snapshot.child("Correo").getValue(String.class);
+                String iva = snapshot.child("Iva").getValue(String.class);
+                String numeroMesas = snapshot.child("NumeroDeMesas").getValue(String.class);
+
+                callback.onDatosCompletos(
+                        telefono != null ? telefono : "",
+                        correo != null ? correo : "",
+                        iva != null ? iva : "0",
+                        numeroMesas != null ? numeroMesas : "0"
+                );
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(context, "Error al cargar datos del ticket", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
 }
