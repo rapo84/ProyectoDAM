@@ -74,7 +74,7 @@ public class AgregarProductos extends AppCompatActivity {
 
         agregar.setOnClickListener(v -> {
             if (codigo.getText().toString().isEmpty() || nombre.getText().toString().isEmpty() || precio.getText().toString().isEmpty()
-                    || cantidad.getText().toString().isEmpty() || categoria.getSelectedItem().toString().isEmpty() || descripcion.getText().toString().isEmpty()) {
+                    || cantidad.getText().toString().isEmpty() || categoria.getSelectedItem().toString().equals("Selecciona una categoria") || descripcion.getText().toString().isEmpty()) {
                 Toast.makeText(AgregarProductos.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
                 return;
             }

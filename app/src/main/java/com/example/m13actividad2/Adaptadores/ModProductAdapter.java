@@ -1,5 +1,6 @@
 package com.example.m13actividad2.Adaptadores;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -63,6 +64,9 @@ public class ModProductAdapter extends RecyclerView.Adapter<ModProductAdapter.Vi
             Intent intent = new Intent(context, ModificarProductos.class);
             intent.putExtra("productoSeleccionado",productos.get(position));
             context.startActivity(intent);
+            if (context instanceof Activity) {
+                ((Activity) context).finish();
+            }
         });
 
     }
@@ -94,9 +98,8 @@ public class ModProductAdapter extends RecyclerView.Adapter<ModProductAdapter.Vi
                 .setCancelable(false) // El diálogo no se puede cancelar tocando fuera de él
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Aquí puedes realizar la acción que quieres que ocurra al aceptar
                         eliminarproducto(producto, position);
-                        //falta eliminar el usuario del login
+
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

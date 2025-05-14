@@ -57,6 +57,7 @@ public class OpcionesDeAdmin extends AppCompatActivity {
 
         ModoEmpleado.setOnClickListener(view -> {
             Intent intent = new Intent(OpcionesDeAdmin.this, EmpleadoActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });

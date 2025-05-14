@@ -128,7 +128,7 @@ public class ModificarProductos extends AppCompatActivity {
 
         saveCategoria.setOnClickListener(view -> {
             categoria = spinnerCategoria.getSelectedItem().toString().trim();
-            if (categoria.isEmpty()) {
+            if (categoria.equals("Selecciona una categoria")) {
                 Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
                 return;
             }

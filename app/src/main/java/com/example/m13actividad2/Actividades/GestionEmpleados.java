@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.m13actividad2.R;
 
 public class GestionEmpleados extends AppCompatActivity {
-    private Button agregarEmpleado, listarEmpleados, eliminarEmpleados;
+    private Button agregarEmpleado, listarEmpleados, eliminarEmpleados, cerrarSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class GestionEmpleados extends AppCompatActivity {
         agregarEmpleado= findViewById(R.id.bt_GE_agregarEmpleado);
         listarEmpleados= findViewById(R.id.bt_GE_ListarEmpleado);
         eliminarEmpleados = findViewById(R.id.bt_GE_EliminarEmpleado);
+        cerrarSesion = findViewById(R.id.bt_GE_logout);
 
         agregarEmpleado.setOnClickListener(view -> {
             Intent intent = new Intent(GestionEmpleados.this, AdminActivityRegistrar.class);
@@ -46,6 +47,12 @@ public class GestionEmpleados extends AppCompatActivity {
             Intent intent = new Intent(GestionEmpleados.this, AdminActivityEliminar.class);
             startActivity(intent);
 
+        });
+
+        cerrarSesion.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionEmpleados.this, Ventana_Inicial.class);
+            startActivity(intent);
+            finish();
         });
 
     }
