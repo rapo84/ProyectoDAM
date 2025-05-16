@@ -15,7 +15,7 @@ import com.example.m13actividad2.R;
 
 public class GestionInventarios extends AppCompatActivity {
 
-    private Button AgregarProducto, ListarProductos, ModificarProductos;
+    private Button AgregarProducto, ListarProductos, ModificarProductos, cerrarSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class GestionInventarios extends AppCompatActivity {
         AgregarProducto = findViewById(R.id.bt_inventario_agregar);
         ListarProductos = findViewById(R.id.bt_inventario_listar);
         ModificarProductos = findViewById(R.id.bt_inventario_modificar);
+        cerrarSesion = findViewById(R.id.bt_GE_logout2);
 
         ListarProductos.setOnClickListener(view -> {
             Intent intent = new Intent(GestionInventarios.this, ListarProductos.class);
@@ -45,6 +46,12 @@ public class GestionInventarios extends AppCompatActivity {
         AgregarProducto.setOnClickListener(view -> {
             Intent intent = new Intent(GestionInventarios.this,AgregarProductos.class);
             startActivity(intent);
+        });
+
+        cerrarSesion.setOnClickListener(view -> {
+            Intent intent = new Intent(GestionInventarios.this, Ventana_Inicial.class);
+            startActivity(intent);
+            finish();
         });
 
 

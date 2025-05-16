@@ -19,13 +19,13 @@
 
         <TextView
             android:id="@+id/Admin_control_panel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="260dp"
+            android:layout_height="46dp"
             android:layout_margin="20sp"
-            android:textSize="20dp"
             android:text="PANEL DE CONTROL DEL ADMINISTRADOR"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <ImageView
             android:id="@+id/imageView"

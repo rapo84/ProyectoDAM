@@ -8,62 +8,66 @@
     android:background="#000000"
     tools:context=".Actividades.ListarProductos">
 
-    <TextView
-        android:id="@+id/tv_titulo_ListarProductos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="LISTAR PRODUCTOS"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_selecion_cat_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="Categoria"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos" />
-
-    <Spinner
-        android:id="@+id/spinner_seleccion_Cat_list"
-        android:layout_width="241dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintStart_toEndOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/bt_ListarProd_buscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:background="#8d8c86"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner_seleccion_Cat_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titulo_ListarProductos"
-        app:srcCompat="@android:drawable/ic_menu_search" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rVListarProductos"
-        android:layout_width="392dp"
-        android:layout_height="771dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/white"
+    <!-- Contenedor vertical centrado -->
+    <LinearLayout
+        android:id="@+id/contenedor_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_selecion_cat_list"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_titulo_ListarProductos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="LISTAR PRODUCTOS"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <!-- Fila de categoría y spinner -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_selecion_cat_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Categoria"
+                android:textColor="@color/white" />
+
+            <Spinner
+                android:id="@+id/spinner_seleccion_Cat_list"
+                android:layout_width="241dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="16dp" />
+
+            <ImageButton
+                android:id="@+id/bt_ListarProd_buscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="#8d8c86"
+                app:srcCompat="@android:drawable/ic_menu_search" />
+        </LinearLayout>
+
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rVListarProductos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:background="@color/white" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

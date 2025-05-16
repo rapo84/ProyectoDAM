@@ -8,6 +8,7 @@
     tools:context=".Actividades.OpcionesDeAdmin">
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -44,56 +45,35 @@
             android:backgroundTint="#F6655E"
             android:text="Agregar Producto" />
 
-        <TextView
-            android:id="@+id/msg_agregar_producto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="Registra un nuevo producto en el inventario de tu establecimiento"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
-
         <Button
             android:id="@+id/bt_inventario_listar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
             android:backgroundTint="#F6655E"
             android:text="Listar productos" />
-
-        <TextView
-            android:id="@+id/msg_listar_producto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="Lista por categoria todos los productos dentro del inventario de tu establecimiento"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/bt_inventario_modificar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
             android:backgroundTint="#F6655E"
             android:text="Modificar Producto" />
 
-        <TextView
-            android:id="@+id/msg_modificar_producto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="Aqui podras modificar la informacion de los productos tu inventario"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_GE_logout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#E7312A"
+        android:text="Cerrar Sesion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.321" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

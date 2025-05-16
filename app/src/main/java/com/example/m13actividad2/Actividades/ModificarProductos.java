@@ -111,7 +111,7 @@ public class ModificarProductos extends AppCompatActivity {
         });
 
         savePrecio.setOnClickListener(view -> {
-            String entrada = cantidad.getText().toString().trim();
+            String entrada = precio.getText().toString().trim();
 
             if (entrada.isEmpty()) {
                 Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
