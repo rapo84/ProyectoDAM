@@ -81,7 +81,7 @@
             android:layout_height="50dp"
             android:hint="CONTRASEÑA"
             android:textSize="18dp"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColor="@color/white"
             android:textColorHint="@color/material_dynamic_neutral40" />
 

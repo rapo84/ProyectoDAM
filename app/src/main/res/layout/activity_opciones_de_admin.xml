@@ -3,83 +3,105 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#121212"
     tools:context=".Actividades.OpcionesDeAdmin">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/Admin_control_panel"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="PANEL DE ADMINISTRADOR"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Admin Image"
+        app:layout_constraintTop_toBottomOf="@id/Admin_control_panel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:srcCompat="@drawable/admopc" />
 
-        <TextView
-            android:id="@+id/Admin_control_panel"
-            android:layout_width="230dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:textSize="18dp"
-            android:text="PANEL DE ADMINISTRADOR"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
+            <Button
+                android:id="@+id/bt_admin_gestionEmpleados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#F6655E"
+                android:text="Gestionar Empleados"
+                android:textColor="@android:color/white"
+                android:elevation="4dp" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="199dp"
-            android:layout_height="157dp"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/admopc" />
+            <Button
+                android:id="@+id/bt_admin_gestionEstablecimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#F6655E"
+                android:text="Gestionar Establecimiento"
+                android:textColor="@android:color/white"
+                android:elevation="4dp" />
 
-        <Button
-            android:id="@+id/bt_admin_gestionEmpleados"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="#F6655E"
-            android:text="Gestionar Empleados" />
+            <Button
+                android:id="@+id/bt_admin_GestionInventarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#F6655E"
+                android:text="Gestionar Inventarios"
+                android:textColor="@android:color/white"
+                android:elevation="4dp" />
 
-        <Button
-            android:id="@+id/bt_admin_gestionEstablecimiento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#F6655E"
-            android:text="Gestionar Establecimiento" />
+            <Button
+                android:id="@+id/bt_admin_cambiar_modo_empleado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#F6655E"
+                android:text="Cambiar a modo empleado"
+                android:textColor="@android:color/white"
+                android:elevation="4dp" />
 
-        <Button
-            android:id="@+id/bt_admin_GestionInventarios"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="80dp"
-            android:backgroundTint="#F6655E"
-            android:text="Gestionar Inventarios" />
-
-        <Button
-            android:id="@+id/bt_admin_cambiar_modo_empleado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="#F6655E"
-            android:text="Cambiar a modo empleado" />
-
-        <Button
-            android:id="@+id/bt_admin_salir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#E7312A"
-            android:text="Cerrar Sesion" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/bt_admin_salir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="#E7312A"
+                android:text="Cerrar Sesion"
+                android:textColor="@android:color/white"
+                android:elevation="4dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

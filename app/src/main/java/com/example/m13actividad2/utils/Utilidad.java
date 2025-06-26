@@ -424,7 +424,17 @@ public class Utilidad {
 
                                     } else {
                                         Toast.makeText(context,"Ha ocurrido un error inesperado",Toast.LENGTH_SHORT).show();
-                                        Log.e("Error", "❌ Error al obtener claims: " + (response.errorBody() != null ? response.errorBody().toString() : "Respuesta vacía"));  // no borrar, ofrece info del error
+                                        //Log.e("Error", "❌ Error al obtener claims: " + (response.errorBody() != null ? response.errorBody().toString() : "Respuesta vacía"));  // no borrar, ofrece info del error
+                                        if (response.errorBody() != null) {
+                                            try {
+                                                String errorJson = response.errorBody().string();
+                                                Log.e("Error", "❌ Error al obtener claims: " + errorJson);
+                                            } catch (IOException e) {
+                                                Log.e("Error", "❌ No se pudo leer el errorBody", e);
+                                            }
+                                        } else {
+                                            Log.e("Error", "❌ Respuesta vacía al obtener claims");
+                                        }
                                     }
 
                                     // Llama al callback con el resultado de la verificación
